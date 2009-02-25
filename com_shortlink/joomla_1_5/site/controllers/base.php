@@ -19,28 +19,30 @@ class ShortlinkControllerBase extends JController
 		$myModel = $this->getModel();
 		
 		$phrase = JRequest::getVar( 'phrase' );
-		$my = $myModel->getShortlink( $phrase );
-		
-		if ($my)
+		$shortlink = $myModel->getShortlink( $phrase );
+
+		if ($shortlink)
 		{
     	    // if $link is a number, we will use it as content id
-			if (intval($my->link))
+			if (intval($shortlink->link))
 	        {
-	        	$mainframe = &JFactory::getApplication();
-	        	$link = "index.php?option=com_content&task=article&id=".$my->link."&Itemid=".$mainframe->getItemid( $my->link );
-	        	//$link = sefRelToAbs($link);
+	        	$link = $myModel->getArticleUrl($shortlink->link);
+	        	
+	        	$link = JRoute::_($link, false);
 	        }
 	        else
 	        {
-	        	$link = $my->link;
+	        	$link = $shortlink->link;
 
-	        	if (!($this->startswith($link, "http://")
+	        	// is relative url?
+	        	if (!($this->isExternal($link)
+	        	    || $this->startswith($link, "http://")
 		        	|| $this->startswith($link, "https://")
 		        	|| $this->startswith($link, "ftp://")
 		        	|| $this->startswith($link, "mailto://")
 		        	|| $this->startswith($link, "file://")))
 		        {
-		        	$link = sefRelToAbs($link);
+		        	$link = JRoute::_($link, false);
 		        }
 	        }
 		}
@@ -49,7 +51,17 @@ class ShortlinkControllerBase extends JController
 		header("Location: $link");
 	}
 
-	function startswith($source, $mask)
+  function isExternal($link)
+  {
+  	$link_pattern='/^(http:\/\/|)(www.|)([^\/]+)/i';
+
+    preg_match($link_pattern, $link, $domain);
+    preg_match($link_pattern, $_SERVER['HTTP_HOST'], $http);
+
+    return $this->startswith($link, "http") && ((isset($domain[3])) and (isset($http[3])) and ($domain[3]!==$http[3]));
+  }
+
+function startswith($source, $mask)
 	{
 	  $pos = strpos($source, $mask);
 	  return (($pos !== false) && ($pos == 0));
