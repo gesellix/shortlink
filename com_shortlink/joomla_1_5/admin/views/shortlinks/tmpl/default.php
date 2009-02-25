@@ -48,7 +48,17 @@
 				<a href="<?php echo $editlink; ?>" title="edit..." ><?php echo $row->phrase; ?></a>
 			</td>
 			<td>
-				<a href="<?php echo $row->link; ?>" title="go to..." target="_blank" ><?php echo $row->link; ?></a>
+			<?php
+			  if ($row->is_article) {
+		  	?>
+				<a href="<?php echo JURI::root().'index.php?option=com_content&task=article&id='.$row->link; ?>" title="go to..." target="_blank" ><?php echo $row->link_text; ?></a>
+			<?php 
+			  } else {
+		  	?>
+				<a href="<?php echo $row->link; ?>" title="go to..." target="_blank" ><?php echo $row->link_text; ?></a>
+			<?php
+			  }
+			?>
 			</td>
 			<td>
 				<?php echo $row->description; ?>

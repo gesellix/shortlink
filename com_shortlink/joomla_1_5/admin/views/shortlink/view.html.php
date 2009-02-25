@@ -20,7 +20,6 @@ class ShortlinksViewShortlink extends JView
 		if ($isNew)  {
 			JToolBarHelper::cancel();
 		} else {
-			JToolBarHelper::apply('apply');
 			// for existing items the button is renamed `close`
 			JToolBarHelper::cancel( 'cancel', 'Close' );
 		}

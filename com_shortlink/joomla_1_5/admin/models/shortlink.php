@@ -60,7 +60,7 @@ class ShortlinksModelShortlink extends JModel
 			$this->_data->last_call = null;
 		}
 		if ($this->_data->link) {
-			if (is_int($this->_data->link) && intval($this->_data->link) > 0) {
+			if ($this->string_is_int($this->_data->link) && $this->_data->link > 0) {
 				$this->_data->link_article = $this->_data->link;
 			} else {
 				$this->_data->link_url = $this->_data->link;
@@ -75,10 +75,10 @@ class ShortlinksModelShortlink extends JModel
 
 		$data = JRequest::get( 'post' );
 
-		if (is_int($this->_data->link_article) && intval($this->_data->link_article) > 0) {
-			$this->_data->link = "" . $this->_data->link_article;
+		if ($this->string_is_int($data['link_article']) && $data['link_article'] > 0) {
+			$data['link'] = $data['link_article'];
 		} else {
-			$this->_data->link = $this->_data->link_url;
+			$data['link'] = $data['link_url'];
 		}
 		
 		// Bind the form fields to the table
@@ -100,6 +100,10 @@ class ShortlinksModelShortlink extends JModel
 		}
 
 		return true;
+	}
+
+	function string_is_int($a){
+	    return ((string) $a) === ((string)(int) $a);
 	}
 
 	function delete()
