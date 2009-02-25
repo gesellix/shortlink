@@ -17,12 +17,11 @@
     </description>
 
 	<files folder="site">
-		<filename>controller.php</filename>
 		<filename>goto.php</filename>
 		<filename>shortlink.php</filename>
 		<filename>index.html</filename>
 		<folder>models</folder>
-		<folder>views</folder>
+		<folder>controllers</folder>
 	</files>
 
     <installfile>install.shortlink.php</installfile>
@@ -43,10 +42,6 @@
    	<administration>
 
 		<menu>Shortlink</menu>
-        <submenu>
-            <menu img="" task="shortlink" controller="base" view="" layout="" sub="">Manager</menu>
-            <menu img="" task="uninstall" controller="uninstall" view="" layout="" sub="">Uninstall</menu>
-        </submenu>
 
 		<files folder="admin">
 			<filename>shortlink.php</filename>

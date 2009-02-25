@@ -7,14 +7,26 @@ jimport( 'joomla.application.component.model' );
 
 class ShortlinkModelShortlink extends JModel
 {
-	function getGreeting()
+	function getShortlink($phrase)
 	{
 		$db =& JFactory::getDBO();
 
-		$query = 'SELECT greeting FROM #__shortlink';
-		$db->setQuery( $query );
-		$greeting = $db->loadResult();
+		$query = 'SELECT * FROM #__shortlink';
+		$query .= ' WHERE phrase = '. $db->quote( $db->getEscaped( $phrase ), false );
 
-		return $greeting;
+		$db->setQuery( $query );
+		$shortlink = $db->loadObject();
+
+		if ($shortlink) {
+			// update statistics
+			$now =& JFactory::getDate();
+			
+			$shortlink->counter++;
+	  		$shortlink->last_call = $now->toMySQL();
+	  		$db->updateObject('#__shortlink', $shortlink, 'id', true);
+		}
+		
+		return $shortlink;
 	}
 }
+?>
