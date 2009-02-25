@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>Shortlink</name>
+	<creationDate>2009-02-22</creationDate>
+	<author>Tobias Gesellchen</author>
+	<authorEmail>tobias@gesellix.de</authorEmail>
+	<authorUrl>http://www.gesellix.de/</authorUrl>
+	<copyright>(c) 2009 Tobias Gesellchen</copyright>
+	<license>GPL</license>
+	<version>3.0</version>
+	<description>
+		<![CDATA[
+		    Shortlink component for Joomla.<br />
+		    A short to long links translator.<br />
+		    &copy; Tobias Gesellchen, <a href="http://www.gesellix.de/" target="_blank">www.gesellix.de</a>
+	    ]]>
+    </description>
+
+	<files folder="site">
+		<filename>controller.php</filename>
+		<filename>goto.php</filename>
+		<filename>shortlink.php</filename>
+		<filename>index.html</filename>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+    <installfile>install.shortlink.php</installfile>
+ 
+    <uninstallfile>uninstall.shortlink.php</uninstallfile>
+
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">uninstall.sql</file>
+		</sql>
+	</uninstall>	
+
+   	<administration>
+
+		<menu>Shortlink</menu>
+        <submenu>
+            <menu img="" task="shortlink" controller="base" view="" layout="" sub="">Manager</menu>
+            <menu img="" task="uninstall" controller="uninstall" view="" layout="" sub="">Uninstall</menu>
+        </submenu>
+
+		<files folder="admin">
+			<filename>shortlink.php</filename>
+			<filename>config.xml</filename>
+			<filename>index.html</filename>
+			<filename>install.sql</filename>
+			<filename>uninstall.sql</filename>
+			<folder>controllers</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>		
+	</administration>
+</install>

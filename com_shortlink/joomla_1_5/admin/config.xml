@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+ <params>
+  <param name="url_path" type="text" default="" label="URLPATH LABEL" description="URLPATH DESC" />
+  <param name="filename" type="text" default="goto.php" label="FILENAME LABEL" description="FILENAME DESC" />
+  <param name="paramname" type="text" default="link" label="PARAMNAME LABEL" description="PARAMNAME DESC" />
+ </params>
+</config>
