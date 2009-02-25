@@ -10,14 +10,6 @@
 
 		return $result;
 	}
-
-    // http://www.yoursite.com/goto.php?link=
-    $baseURL = strlen(_SHORTLINK_CONF_URLPATH) > 0 ? _SHORTLINK_CONF_URLPATH : JURI::base();
-    $fullshortLink = $baseURL;
-
-    if ((strrpos($fullshortLink, "/") + 1) < strlen($fullshortLink))
-      $fullshortLink .= "/";
-    $fullshortLink .= _SHORTLINK_CONF_FILENAME."?"._SHORTLINK_CONF_PARAMNAME."=";
 ?>
 
 <script language="javascript" type="text/javascript">
@@ -31,7 +23,7 @@ function submitbutton(pressbutton)
   }
 
   var form = document.adminForm;
-  var ownUrl = "<?php echo $baseURL.'/'; ?>";
+  var ownUrl = "<?php echo $this->baseURL.'/'; ?>";
 
   // do field validation
   if (form.phrase.value == "")
@@ -52,7 +44,7 @@ function submitbutton(pressbutton)
 
 function updateUserlink()
 {
-  document.adminForm.user_link.value = "<?php echo $fullshortLink; ?>" + document.adminForm.phrase.value;
+  document.adminForm.link_user.value = "<?php echo $this->fullshortLink; ?>" + document.adminForm.phrase.value;
 }
 //-->
 </script>
@@ -70,7 +62,10 @@ function updateUserlink()
 				</label>
 			</td>
 			<td>
-				<input class="inputbox" type="text" name="phrase" id="phrase" size="32" maxlength="100" value="<?php echo $this->shortlink->phrase;?>" />
+				<input class="inputbox" type="text" name="phrase" id="phrase" size="32" maxlength="100" value="<?php echo $this->shortlink->phrase;?>" onchange="javascript:updateUserlink();" />
+			</td>
+			<td>
+				<a href="#" onclick="javascript:document.forms['adminForm'].phrase.value='<?php echo uniqid(""); ?>'; updateUserlink();"><?php echo JText::_( 'Set random phrase' ); ?></a>
 			</td>
 		</tr>
 		<tr>
@@ -79,7 +74,7 @@ function updateUserlink()
 					<?php echo JText::_( 'Description' ); ?>:
 				</label>
 			</td>
-			<td>
+			<td colspan="2">
 				<input class="inputbox" type="text" name="description" id="description" size="32" maxlength="255" value="<?php echo $this->shortlink->description;?>" />
 			</td>
 		</tr>
@@ -89,7 +84,7 @@ function updateUserlink()
 					<?php echo JText::_( 'Article to link to' ); ?>:
 				</label>
 			</td>
-			<td>
+			<td colspan="2">
 				<?php echo getArticleSelectList($this->articles, $this->shortlink->link_article); ?>
 			</td>
 		</tr>
@@ -99,18 +94,21 @@ function updateUserlink()
 					<?php echo JText::_( 'Or type explicit link URL' ); ?>:
 				</label>
 			</td>
-			<td>
+			<td colspan="2">
 				<input class="inputbox" type="text" name="link_url" id="link_url" size="32" maxlength="255" value="<?php echo $this->shortlink->link_url;?>" onchange="javascript:document.adminForm.link_article.value = 0; return false;" />
 			</td>
 		</tr>
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="link_user">
-					<?php echo JText::_( 'Link for User' ); ?> <a href="#" onclick="updateUserlink();">Update</a>:
+					<?php echo JText::_( 'Link for User' ); ?>:
 				</label>
 			</td>
 			<td>
 				<input readonly="readonly" class="inputbox" type="text" name="link_user" id="link_user" size="32" maxlength="255" value="" />
+			</td>
+			<td>
+				 <a href="#" onclick="updateUserlink();"><?php echo JText::_( 'Update' ); ?></a>
 			</td>
 		</tr>
 		</table>
