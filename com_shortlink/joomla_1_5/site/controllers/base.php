@@ -27,8 +27,8 @@ class ShortlinkControllerBase extends JController
 			if (intval($my->link))
 	        {
 	        	$mainframe = &JFactory::getApplication();
-	        	$link = "index.php?option=content&task=view&id=".$my->link."&Itemid=".$mainframe->getItemid( $my->link );
-	        	$link = sefRelToAbs($link);
+	        	$link = "index.php?option=com_content&task=article&id=".$my->link."&Itemid=".$mainframe->getItemid( $my->link );
+	        	//$link = sefRelToAbs($link);
 	        }
 	        else
 	        {
