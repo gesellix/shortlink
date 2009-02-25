@@ -16,6 +16,12 @@
 	    ]]>
     </description>
 
+	<params>
+		<param name="url_path" default="" />
+		<param name="filename" default="goto.php" />
+		<param name="paramname" default="link" />
+	</params>
+
 	<files folder="site">
 		<filename>goto.php</filename>
 		<filename>shortlink.php</filename>
