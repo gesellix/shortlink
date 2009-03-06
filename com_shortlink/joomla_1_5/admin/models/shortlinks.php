@@ -5,6 +5,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.application.component.model' );
 
+require_once(JPATH_COMPONENT.DS.'models'.DS.'filter.php');
+
 class ShortlinksModelShortlinks extends JModel
 {
 	/**
@@ -13,27 +15,70 @@ class ShortlinksModelShortlinks extends JModel
 	 * @var array
 	 */
 	var $_data;
+	
+	/**
+	 * @var ShortlinksFilter
+	 */
+	var $_filter;
 
 
 	function _buildQuery()
 	{
-		$query = ' SELECT * '
-			. ' FROM #__shortlink '
-		;
+		$where = $this->_filter->getWhere();
+		$order_by = $this->_filter->getOrderBy();
+		
+		$query = ' SELECT * FROM #__shortlink ';
+		$query .= $where;
+		$query .= $order_by;
 
 		return $query;
 	}
 
+	function getItemCount()
+	{
+		$where = $this->_filter->getWhere();
+		
+		$query = ' SELECT COUNT(*) FROM #__shortlink ';
+		$query .= $where;
+		
+		$this->_db->setQuery( $query );
+		$total = $this->_db->loadResult();
+	
+		return $total;
+	}
+
+	function setOptions($options)
+	{
+		$filter = new ShortlinksFilter();
+
+		// TODO set filter criteria and update model
+		$filter->setOrder($options['order'], $options['order_Dir']);
+		$filter->setKeyword($options['search']);
+		$filter->setLastCallBetween($options['last_call'], null);
+		$filter->setPageLimits($options['limitstart'], $options['limit']);
+
+		$this->setFilter($filter);
+
+		return $filter;
+	}
+
+	function setFilter(&$filter)
+	{
+		// invalidate $_data when $_filter is updated
+		$this->_data = null;
+		$this->_filter = $filter;
+	}
+	
 	/**
 	 * @return array Array of objects containing the data from the database
 	 */
-	function getData()
+	function &getData()
 	{
 		// Lets load the data if it doesn't already exist
 		if (empty( $this->_data ))
 		{
 			$query = $this->_buildQuery();
-			$this->_data = $this->_getList( $query );
+			$this->_data = $this->_getList( $query, $this->_filter->getLimitstart(), $this->_filter->getLimit() );
 			
 			$articles = $this->getArticles();
 			
@@ -58,9 +103,8 @@ class ShortlinksModelShortlinks extends JModel
 		// Load articles
 		if (empty( $this->_articles )) {
   			$query = ' SELECT id as value, title as text FROM #__content ';
-			$this->_db->setQuery( $query );
-			$artrows = $this->_db->loadObjectList();
-
+			$artrows = $this->_getList( $query );
+			
 			$articles = array();
 			foreach ($artrows as $artrow)
 		    {

@@ -17,7 +17,7 @@ class ShortlinkControllerBase extends JController
 		$link = JURI::base();
 		
 		$myModel = $this->getModel();
-		
+
 		$phrase = JRequest::getVar( 'phrase' );
 		$shortlink = $myModel->getShortlink( $phrase );
 

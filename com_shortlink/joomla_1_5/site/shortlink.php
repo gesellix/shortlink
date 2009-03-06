@@ -7,11 +7,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 require_once (JPATH_COMPONENT.DS.'controllers'.DS.'base.php');
 
 // Require specific controller if requested
-if($controller = JRequest::getVar('controller')) {
-	require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
-} else {
-	$controller = 'base';
-}
+$controller = JRequest::getCmd( 'controller', 'base' );
+require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
 
 // Create the controller
 $classname	= 'ShortlinkController'.$controller;

@@ -1,35 +1,62 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
+<?php
+ 		JHTML::_('behavior.tooltip');
+?>
 <form action="index.php" method="post" name="adminForm">
 <div id="editcell">
+	<table>
+	<tr>
+		<td align="left" width="100%">
+			<?php echo JText::_( 'Filter' ); ?>:
+			<input type="text" name="search" id="search" value="<?php echo $this->options['search'];?>" class="text_area" onchange="document.adminForm.submit();" />
+			<button onclick="this.form.submit();"><?php echo JText::_( 'Go' ); ?></button>
+			<button onclick="document.getElementById('search').value='';this.form.submit();"><?php echo JText::_( 'Filter Reset' ); ?></button>
+<?php /* <button onclick="document.getElementById('search').value='';this.form.getElementById('filter_last_call').value='0';this.form.getElementById('filter_state').value='';this.form.submit();"><?php echo JText::_( 'Filter Reset' ); ?></button> */ ?>
+		</td>
+		<td nowrap="nowrap">
+			<?php /*
+			echo $lists['catid'];
+			echo $lists['state'];
+*/			?>
+		</td>
+	</tr>
+	</table>
 	<table class="adminlist">
 	<thead>
 		<tr>
-			<th width="5">
-				<?php echo JText::_( 'ID' ); ?>
+			<th width="5" nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'ID', 'id', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
-			<th width="20">
+			<th width="20" nowrap="nowrap">
 				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
 			</th>			
-			<th>
-				<?php echo JText::_( 'Phrase' ); ?>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'Phrase', 'phrase', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
-			<th>
-				<?php echo JText::_( 'Link' ); ?>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'Link', 'link', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
-			<th>
-				<?php echo JText::_( 'Description' ); ?>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'Description', 'description', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
-			<th>
-				<?php echo JText::_( 'Created' ); ?>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'Created', 'create_date', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
-			<th>
-				<?php echo JText::_( 'Last call' ); ?>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'Last Call', 'last_call', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
-			<th>
-				<?php echo JText::_( '# hits' ); ?>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  'Hits', 'counter', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
 		</tr>
 	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="8">
+				<?php echo $this->pageNav->getListFooter(); ?>
+			</td>
+		</tr>
+	</tfoot>
 	<?php
 	$k = 0;
 	for ($i=0, $n=count( $this->items ); $i < $n; $i++)	{
@@ -84,5 +111,7 @@
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />
 <input type="hidden" name="controller" value="shortlink" />
+<input type="hidden" name="filter_order" value="<?php echo $this->options['order']; ?>" />
+<input type="hidden" name="filter_order_Dir" value="<?php echo $this->options['order_Dir']; ?>" />
 <?php echo JHTML::_( 'form.token' ); ?>
 </form>
