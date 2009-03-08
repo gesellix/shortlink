@@ -23,6 +23,22 @@
 
     	return $time_string;
 	}
+	
+	function getAvgHits($create_date, $last_call, $counter)
+	{
+		$one_day = 60 * 60 * 24;
+
+		$create_date_time = strtotime(substr($create_date, 0, 10));
+		$last_call_time = strtotime(substr($last_call, 0, 10));
+		$today = mktime();
+
+		//$call_days = round((($last_call_time - $create_date_time) / $one_day) +1, 0);
+		$call_days = round((($today - $create_date_time) / $one_day) +1, 0);
+		
+		$call_daily = round ($counter / $call_days, 2);
+		$call_daily = ($call_daily > 0) ? $call_daily." (".$call_days.")" : "";
+		return $call_daily;
+	}
 ?>
 <form action="index.php" method="post" name="adminForm">
 <div id="editcell">
@@ -66,11 +82,14 @@
 			<th nowrap="nowrap">
 				<?php echo JHTML::_('grid.sort',  'Hits', 'counter', @$this->options['order_Dir'], @$this->options['order'] ); ?>
 			</th>
+			<th nowrap="nowrap">
+				<?php echo JHTML::_('grid.sort',  '&Oslash; Hits (days)', 'avg_hits', @$this->options['order_Dir'], @$this->options['order'] ); ?>
+			</th>
 		</tr>
 	</thead>
 	<tfoot>
 		<tr>
-			<td colspan="8">
+			<td colspan="9">
 				<?php echo $this->pageNav->getListFooter(); ?>
 			</td>
 		</tr>
@@ -116,6 +135,9 @@
 			</td>
 			<td>
 				<?php echo $row->counter; ?>
+			</td>
+			<td>
+				<?php echo getAvgHits($row->create_date, $row->last_call, $row->counter); ?>
 			</td>
 		</tr>
 		<?php
