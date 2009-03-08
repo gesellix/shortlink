@@ -1,6 +1,28 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php
- 		JHTML::_('behavior.tooltip');
+	JHTML::_('behavior.tooltip');
+
+	function formatDate($date)
+	{
+		$time_string = "never";
+		if ($date != "0000-00-00 00:00:00")
+		{
+			$time = strtotime($date);
+			$time_string = date("Y-m-d", $time);
+			$today = mktime();
+			$today_begin = mktime(0, 0, 0, date("n", $today), date("j", $today), date("Y", $today));
+			$yesterday_begin = mktime(0, 0, 0, date("n", $today), date("j", $today)-1, date("Y", $today));
+			$daybeforeyesterday_begin = mktime(0, 0, 0, date("n", $today), date("j", $today)-2, date("Y", $today));
+			if ($today_begin < $time)
+				$time_string = "today";
+			else if ($yesterday_begin < $time)
+				$time_string = "yesterday";
+			//else if ($daybeforeyesterday_begin < $time)
+			//	$time_string = "day before yesterday";
+    	}
+
+    	return $time_string;
+	}
 ?>
 <form action="index.php" method="post" name="adminForm">
 <div id="editcell">
@@ -10,14 +32,10 @@
 			<?php echo JText::_( 'Filter' ); ?>:
 			<input type="text" name="search" id="search" value="<?php echo $this->options['search'];?>" class="text_area" onchange="document.adminForm.submit();" />
 			<button onclick="this.form.submit();"><?php echo JText::_( 'Go' ); ?></button>
-			<button onclick="document.getElementById('search').value='';this.form.submit();"><?php echo JText::_( 'Filter Reset' ); ?></button>
-<?php /* <button onclick="document.getElementById('search').value='';this.form.getElementById('filter_last_call').value='0';this.form.getElementById('filter_state').value='';this.form.submit();"><?php echo JText::_( 'Filter Reset' ); ?></button> */ ?>
+			<button onclick="document.getElementById('search').value='';this.form.getElementById('filter_last_call').value='total';this.form.submit();"><?php echo JText::_( 'Filter Reset' ); ?></button>
 		</td>
 		<td nowrap="nowrap">
-			<?php /*
-			echo $lists['catid'];
-			echo $lists['state'];
-*/			?>
+			<?php echo $this->lastCallSel; ?>
 		</td>
 	</tr>
 	</table>
@@ -91,10 +109,10 @@
 				<?php echo $row->description; ?>
 			</td>
 			<td>
-				<?php echo $row->create_date; ?>
+				<?php echo formatDate($row->create_date); ?>
 			</td>
 			<td>
-				<?php echo $row->last_call; ?>
+				<?php echo formatDate($row->last_call); ?>
 			</td>
 			<td>
 				<?php echo $row->counter; ?>
