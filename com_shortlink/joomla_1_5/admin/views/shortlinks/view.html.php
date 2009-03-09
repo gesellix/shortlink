@@ -45,21 +45,23 @@ class ShortlinksViewShortlinks extends JView
 	{
 		$javascript	= 'onchange="document.adminForm.submit();"';
 		$active 	= $options['last_call'];
+
+		$texts = ShortlinksFilter::getLastCallSelections();
 		
 		// TODO externalize texts
-    	$texts['total'] = "- show all (".$counters['total'].")";
-		$texts['never'] = "- never called (".$counters['never']."/".$counters['total'].")";
-		$texts['last_weeks_1'] = "- called within last week (".$counters['last_weeks_1']."/".$counters['total'].")";
-		$texts['last_weeks_2'] = "- called within last 2 weeks (".$counters['last_weeks_2']."/".$counters['total'].")";
-		$texts['last_weeks_3'] = "- called within last 3 weeks (".$counters['last_weeks_3']."/".$counters['total'].")";
-		$texts['last_weeks_4'] = "- called within last 4 weeks (".$counters['last_weeks_4']."/".$counters['total'].")";
-		$texts['last_months_1'] = "- called within last month (".$counters['last_months_1']."/".$counters['total'].")";
-		$texts['last_months_2'] = "- called within last 2 months (".$counters['last_months_2']."/".$counters['total'].")";
-		$texts['last_months_3'] = "- called within last 3 months (".$counters['last_months_3']."/".$counters['total'].")";
-		$texts['last_months_4'] = "- called within last 4 months (".$counters['last_months_4']."/".$counters['total'].")";
-		$texts['last_months_5'] = "- called within last 5 months (".$counters['last_months_5']."/".$counters['total'].")";
-		$texts['last_months_6'] = "- called within last 6 months (".$counters['last_months_6']."/".$counters['total'].")";
-		$texts['last_year'] = "- called within last year (".$counters['last_year']."/".$counters['total'].")";
+    	$texts['total'] .= "(".$counters['total'].")";
+		$texts['never'] .= "(".$counters['never']."/".$counters['total'].")";
+		$texts['last_weeks_1'] .= "(".$counters['last_weeks_1']."/".$counters['total'].")";
+		$texts['last_weeks_2'] .= "(".$counters['last_weeks_2']."/".$counters['total'].")";
+		$texts['last_weeks_3'] .= "(".$counters['last_weeks_3']."/".$counters['total'].")";
+		$texts['last_weeks_4'] .= "(".$counters['last_weeks_4']."/".$counters['total'].")";
+		$texts['last_months_1'] .= "(".$counters['last_months_1']."/".$counters['total'].")";
+		$texts['last_months_2'] .= "(".$counters['last_months_2']."/".$counters['total'].")";
+		$texts['last_months_3'] .= "(".$counters['last_months_3']."/".$counters['total'].")";
+		$texts['last_months_4'] .= "(".$counters['last_months_4']."/".$counters['total'].")";
+		$texts['last_months_5'] .= "(".$counters['last_months_5']."/".$counters['total'].")";
+		$texts['last_months_6'] .= "(".$counters['last_months_6']."/".$counters['total'].")";
+		$texts['last_year'] .= "(".$counters['last_year']."/".$counters['total'].")";
 				
 		foreach($counters as $key => $value)
 		{
@@ -74,10 +76,12 @@ class ShortlinksViewShortlinks extends JView
 	{
 		global $mainframe;
 
+		$params = &JComponentHelper::getParams( 'com_shortlink' );
+		
 		$context			= 'com_shortlink.shortlinks.list.';
 		$filter_order		= $mainframe->getUserStateFromRequest( $context.'filter_order',		'filter_order',		'id',	'cmd' );
 		$filter_order_dir	= $mainframe->getUserStateFromRequest( $context.'filter_order_dir',	'filter_order_Dir',	'',			'word' );
-		$filter_last_call	= $mainframe->getUserStateFromRequest( $context.'filter_last_call',	'filter_last_call',	'',			'string' );
+		$filter_last_call	= $mainframe->getUserStateFromRequest( $context.'filter_last_call',	'filter_last_call',	$params->def('last_call', 'total'),			'string' );
 		$search				= $mainframe->getUserStateFromRequest( $context.'search',			'search',			'',			'string' );
 
 		$limit		= $mainframe->getUserStateFromRequest( 'global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int' );

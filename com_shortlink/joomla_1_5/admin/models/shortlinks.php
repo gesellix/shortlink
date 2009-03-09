@@ -46,22 +46,7 @@ class ShortlinksModelShortlinks extends JModel
 		
 		$query = ' SELECT COUNT(*) FROM #__shortlink ';
 
-		$one_day = 60 * 60 * 24;
-    	$time_now = time();
-
-    	$wheres['total'] = $where_main;
-		$wheres['never'] = $where_main.' AND last_call = \'0000-00-00 00:00:00\'';
-		$wheres['last_year'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 365).'\'';
-		$wheres['last_months_6'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 183).'\'';
-		$wheres['last_months_5'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 152).'\'';
-		$wheres['last_months_4'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 122).'\'';
-		$wheres['last_months_3'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 91).'\'';
-		$wheres['last_months_2'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 61).'\'';
-		$wheres['last_months_1'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 31).'\'';
-		$wheres['last_weeks_4'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 28).'\'';
-		$wheres['last_weeks_3'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 21).'\'';
-		$wheres['last_weeks_2'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 14).'\'';
-		$wheres['last_weeks_1'] = $where_main.' AND last_call > \''.date("Y-m-d H:i:s", $time_now - $one_day * 7).'\'';
+		$wheres = $this->_filter->appendLastCallClauses($where_main);
 
 		foreach($wheres as $key => $value)
 		{

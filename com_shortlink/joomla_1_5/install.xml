@@ -20,6 +20,7 @@
 		<param name="url_path" default="" />
 		<param name="filename" default="goto.php" />
 		<param name="paramname" default="link" />
+		<param name="last_call" default="total" />
 	</params>
 
 	<files folder="site">
@@ -56,6 +57,7 @@
 			<filename>install.sql</filename>
 			<filename>uninstall.sql</filename>
 			<folder>controllers</folder>
+			<folder>elements</folder>
 			<folder>models</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
