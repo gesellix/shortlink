@@ -127,10 +127,10 @@
 			<td>
 				<?php echo $row->description; ?>
 			</td>
-			<td>
+			<td title="<?php $row->create_date ?>">
 				<?php echo formatDate($row->create_date); ?>
 			</td>
-			<td>
+			<td title="<?php $row->last_call ?>">
 				<?php echo formatDate($row->last_call); ?>
 			</td>
 			<td>

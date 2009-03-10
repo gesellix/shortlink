@@ -41,7 +41,7 @@ function initDB($database)
 
   $database->setQuery("INSERT IGNORE INTO `".$myTable."` VALUES ('', 'gesellix', 'http://www.gesellix.de/', '_blank', 0, 'Tobias Gesellchen', NOW(), '0000-00-00 00:00:00')");
   $database->query();
-  $database->setQuery("INSERT IGNORE INTO `".$myTable."` VALUES ('', 'deejay_', 'http://www.the-deejay.com/', '_blank', 0, 'Daniel Janesch', NOW(), '0000-00-00 00:00:00')");
+  $database->setQuery("INSERT IGNORE INTO `".$myTable."` VALUES ('', 'deejay_', 'http://www.fotoeck.at/', '_blank', 0, 'Daniel Janesch', NOW(), '0000-00-00 00:00:00')");
   $database->query();
 }
 

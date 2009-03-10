@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
- <params addpath="/components/com_shortlink/elements">
-  <param name="url_path" type="text" default="" label="URLPATH LABEL" description="URLPATH DESC" />
-  <param name="filename" type="text" default="goto.php" label="FILENAME LABEL" description="FILENAME DESC" />
-  <param name="paramname" type="text" default="link" label="PARAMNAME LABEL" description="PARAMNAME DESC" />
-  <param name="last_call" type="lastcalllist" default="total" label="LASTCALL LABEL" description="LASTCALL DESC" />
+ <params addpath="/administrator/components/com_shortlink/elements">
+  <param name="url_path" type="text" default="" label="URLPATH_LABEL" description="URLPATH_DESC" />
+  <param name="filename" type="text" default="goto.php" label="FILENAME_LABEL" description="FILENAME_DESC" />
+  <param name="paramname" type="text" default="link" label="PARAMNAME_LABEL" description="PARAMNAME_DESC" />
+  <param name="last_call" type="lastcalllist" default="total" label="LASTCALL_LABEL" description="LASTCALL_DESC" />
+  <param name="def_filter_order" type="list" default="id" label="DEFAULTFILTERORDER_LABEL" description="DEFAULTFILTERORDER_DESC">
+    <option value="id">ID</option>
+    <option value="phrase">Phrase</option>
+    <option value="link">Link</option>
+    <option value="description">Dscription</option>
+    <option value="create_date">Created</option>
+    <option value="last_call">Last Call</option>
+    <option value="counter">Hits</option>
+    <option value="avg_hits">avg. Hits (days)</option>
+  </param>
+  <param name="def_filter_dir" type="list" default="desc" label="DEFAULTFILTERDIR_LABEL" description="DEFAULTFILTERDIR_DESC">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+  </param>
  </params>
 </config>
