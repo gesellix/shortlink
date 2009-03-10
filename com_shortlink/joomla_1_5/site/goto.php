@@ -5,6 +5,7 @@ define( '_JEXEC', 1 );
 
 define( 'DS', DIRECTORY_SEPARATOR );
 
+// TODO was, wenn das cms in einem Unterordner liegt?!
 define('JPATH_BASE', dirname(__FILE__) );
 
 require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
