@@ -18,7 +18,7 @@ $params = &JComponentHelper::getParams( 'com_shortlink' );
 // default location
 $link = "index.php";
 
-foreach(array_reverse(explode(",", $params->get('paramname', 'link'))) as $linkname) {
+foreach(explode(",", $params->get('paramname', 'link')) as $linkname) {
   $phrase = $_GET[$linkname];
   if ($phrase)
   {
