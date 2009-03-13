@@ -3,6 +3,7 @@
  <params addpath="/administrator/components/com_shortlink/elements">
   <param name="url_path" type="text" default="" label="URLPATH_LABEL" description="URLPATH_DESC" />
   <param name="filename" type="text" default="goto.php" label="FILENAME_LABEL" description="FILENAME_DESC" />
+  <param name="dummy_action" type="checkconfigbutton" default="" label="-->" description="MV_ACTION_DESC" />
   <param name="paramname" type="text" default="link" label="PARAMNAME_LABEL" description="PARAMNAME_DESC" />
   <param name="last_call" type="lastcalllist" default="total" label="LASTCALL_LABEL" description="LASTCALL_DESC" />
   <param name="def_filter_order" type="list" default="id" label="DEFAULTFILTERORDER_LABEL" description="DEFAULTFILTERORDER_DESC">
