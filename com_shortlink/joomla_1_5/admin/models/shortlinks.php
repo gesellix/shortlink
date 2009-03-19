@@ -61,7 +61,6 @@ class ShortlinksModelShortlinks extends JModel
 	{
 		$filter = new ShortlinksFilter();
 
-		// TODO set filter criteria and update model
 		$filter->setOrder($options['order'], $options['order_Dir']);
 		$filter->setKeyword($options['search']);
 		$filter->setLastCall($options['last_call']);

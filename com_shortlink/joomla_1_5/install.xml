@@ -56,6 +56,7 @@
 			<filename>index.html</filename>
 			<filename>install.sql</filename>
 			<filename>uninstall.sql</filename>
+			<folder>assets</folder>
 			<folder>controllers</folder>
 			<folder>elements</folder>
 			<folder>models</folder>

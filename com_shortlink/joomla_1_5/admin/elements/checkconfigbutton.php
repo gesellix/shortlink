@@ -16,6 +16,8 @@ class JElementCheckconfigbutton extends JElement
 	{
 		$class = ( $node->attributes('class') ? 'class="'.$node->attributes('class').'"' : 'class="inputbox"' );
 
-		return "<a href=\"#\" onclick=\"javascript:alert('TODO');return false;\">".JText::_( 'Move file to new location' )."</a>";
+		$js = 'onclick="javascript:window.parent.onMoveHelperFile(document.getElementById(\'paramsurl_path\'), document.getElementById(\'paramsfilename\'), document.getElementById(\'paramsdummy_action-lbl\'));"';
+		
+		return "<a href=\"#\" ".$js." >".JText::_( 'Move file to new location' )."</a>";
 	}
 }
