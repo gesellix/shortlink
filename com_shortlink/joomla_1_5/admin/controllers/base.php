@@ -19,54 +19,68 @@ class ShortlinksControllerBase extends JController
 	
 	function rename()
 	{
-		// TODO rename/move file to new location.
-		// TODO edit JBASE_PATH to match relative path to Joomla
-		// TODO deliver success msg.
-
 		//Old Options
 		$params = &JComponentHelper::getParams( 'com_shortlink' );
-		$path_old = $params->def('url_path', '');
+		$path_old = $params->def('url_path', JPATH_SITE);
 		$file_old = $params->def('filename', 'goto.php');
 		
 		// New Options
 		$path_new = JRequest::getVar( 'target_path' );
 		$file_new = JRequest::getVar( 'target_file' );
 
-		echo "TARGET:".$path_new.DS.$file_new.".";
+		$path_new = (empty($path_new) ? JPATH_SITE : $path_new);
 		
+		$path_old = $this->appendDsIfNeeded($path_old);
+		$path_new = $this->appendDsIfNeeded($path_new);
+
+		$source_path = $path_old.$file_old;
+		$target_path = $path_new.$file_new;
+
+		$result = copy($source_path, $target_path);
+		if ($result)
+		{
+		    $lines = file($target_path);
+
+		    $handle = fopen($target_path, 'w');
+
+		    foreach ($lines as $index => $line)
+		    {
+		    	$matches = preg_match("/define\('JPATH_BASE', .*\);/", $line);
+		    	if ($matches)
+		    	{
+		    		$tmp = preg_replace('/\\\\/', '\'.DS.\'', $path_new);
+		    		$tmp = preg_replace('#/#', '\'.DS.\'', $tmp);
+
+		    		fwrite($handle, "define('JPATH_BASE', '".$tmp."' );\n");
+		    	}
+		    	else
+		    	{
+		    		fwrite($handle, $line);
+    	    	}
+		    }
+		    
+			fclose($handle);
+			
+			unlink($source_path);
+
+			echo "Success moving ".$source_path." to ".$target_path;
+		}
+		else
+		{
+			echo "Error moving ".$source_path." to ".$target_path;
+		}
+
+		// exit Joomla - this is only an AJAX request
 		global $mainframe;
 		$mainframe->close();
 	}
 
-	function moveFile($path, $filename)
+	function appendDsIfNeeded($path)
 	{
-		$params = &JComponentHelper::getParams( 'com_shortlink' );
-
-		//Old Options
-		$path_old = $params->def('url_path', '');
-		$filename_old = $params->def('filename', 'goto.php');
-
-		// TODO move from ($path_old.DS.$filename_old) to ($path.DS.$filename)
-		// then check for success.
-
-		/*
-		clearstatcache();
-		@chmod ($config_file, 0766);
-	
-		$configpermission = is_writable($config_file);
-	  	if (!$configpermission)
+	  	if ( !empty( $path ) && substr( $path, -1 ) != DS )
 	  	{
-	    	mosRedirect("index2.php?option=$option&task=missingconfig");
-	    	break;
-	  	}
-	
-		if ($fp = fopen("$config_file", "w+"))
-	  	{
-	    	fputs($fp, $configtxt, strlen($configtxt));
-	    	fclose($fp);
-	  	}
-	  	$mosmsg = "Config is saved !";
-	  	mosRedirect("index2.php?option=$option&task=config", $mosmsg);
-	  	*/
+			$path .= DS;
+		}
+		return $path;
 	}
 }
