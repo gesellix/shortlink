@@ -1,14 +1,14 @@
-var onMoveHelperFile = function(path, file, info) {
+var onMoveHelperFile = function(from, to, info) {
 	var url = "index.php?option=com_shortlink&format=raw&task=rename";
-	url += "&target_path="+path.value;
-	url += "&target_file="+file.value;
+	url += "&path_old="+from.value;
+	url += "&path_new="+to.value;
 	
 	ajax=new Ajax(url,{
 		method:'get',
 		onRequest:function(){info.setHTML('please wait...')},
 		onComplete:function(response){
 			info.setHTML('done!');
-			alert('text '+response);
+			alert(response);
 		}
 	});
 	

@@ -19,23 +19,28 @@ class ShortlinksControllerBase extends JController
 	
 	function rename()
 	{
-		//Old Options
-		$params = &JComponentHelper::getParams( 'com_shortlink' );
-		$path_old = $params->def('url_path', JPATH_SITE);
-		$file_old = $params->def('filename', 'goto.php');
+		$source_path = JRequest::getVar( 'path_old' );
+		$target_path = JRequest::getVar( 'path_new' );
+
+    	// replace directory separators with locally valid ones
+    	$target_path = preg_replace('#\\\\#', DS, $target_path);
+    	$target_path = preg_replace('#/#', DS, $target_path);
 		
-		// New Options
-		$path_new = JRequest::getVar( 'target_path' );
-		$file_new = JRequest::getVar( 'target_file' );
+		$pattern_path = '#.+?\\'.DS.'.+?#'; 
 
-		$path_new = (empty($path_new) ? JPATH_SITE : $path_new);
+		$matches = preg_match($pattern_path, $source_path);
+    	if (!$matches || !file_exists($source_path))
+    	{
+			$this->closeAjax("'path_old' is wrong or doesn't exist.");
+			return;
+		}
+    	$matches = preg_match($pattern_path, $target_path);
+		if (empty($target_path))
+		{
+			$this->closeAjax("'path_new' is wrong.");
+			return;
+		}
 		
-		$path_old = $this->appendDsIfNeeded($path_old);
-		$path_new = $this->appendDsIfNeeded($path_new);
-
-		$source_path = $path_old.$file_old;
-		$target_path = $path_new.$file_new;
-
 		$result = copy($source_path, $target_path);
 		if ($result)
 		{
@@ -48,8 +53,9 @@ class ShortlinksControllerBase extends JController
 		    	$matches = preg_match("/define\('JPATH_BASE', .*\);/", $line);
 		    	if ($matches)
 		    	{
-		    		$tmp = preg_replace('/\\\\/', '\'.DS.\'', $path_new);
-		    		$tmp = preg_replace('#/#', '\'.DS.\'', $tmp);
+		    		// cut off '/goto.php'
+		    		$tmp = substr($target_path, 0, strrpos($target_path, DS));
+			    	$tmp = preg_replace('#\\'.DS.'#', '\'.DS.\'', $tmp);
 
 		    		fwrite($handle, "define('JPATH_BASE', '".$tmp."' );\n");
 		    	}
@@ -63,18 +69,29 @@ class ShortlinksControllerBase extends JController
 			
 			unlink($source_path);
 
-			echo "Success moving ".$source_path." to ".$target_path;
+			$this->closeAjax("Success moving ".$source_path." to ".$target_path);
 		}
 		else
 		{
-			echo "Error moving ".$source_path." to ".$target_path;
+			$this->closeAjax("Error moving ".$source_path." to ".$target_path);
+		}
+		
+		// $mainframe should already be closed here (AJAX request)!
+		return;
+	}
+
+	function closeAjax($msg = '')
+	{
+		if ($msg)
+		{
+			echo $msg;
 		}
 
 		// exit Joomla - this is only an AJAX request
 		global $mainframe;
 		$mainframe->close();
 	}
-
+	
 	function appendDsIfNeeded($path)
 	{
 	  	if ( !empty( $path ) && substr( $path, -1 ) != DS )

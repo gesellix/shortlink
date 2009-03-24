@@ -17,10 +17,11 @@
     </description>
 
 	<params>
-		<param name="url_path" default="" />
-		<param name="filename" default="goto.php" />
+		<param name="helper_path" default="goto.php" />
 		<param name="paramname" default="link" />
 		<param name="last_call" default="total" />
+		<param name="def_filter_order" default="id" />
+		<param name="def_filter_dir" default="desc" />
 	</params>
 
 	<files folder="site">
