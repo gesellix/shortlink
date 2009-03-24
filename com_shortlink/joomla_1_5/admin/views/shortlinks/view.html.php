@@ -14,7 +14,7 @@ class ShortlinksViewShortlinks extends JView
 		JToolBarHelper::deleteList();
 		JToolBarHelper::editListX();
 		JToolBarHelper::addNewX();
-		JToolBarHelper::preferences('com_shortlink', '200');
+		JToolBarHelper::preferences('com_shortlink', '300');
 		//JToolBarHelper::help( 'screen.shortlink' );
 
 		$document = &JFactory::getDocument();

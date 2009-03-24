@@ -28,6 +28,8 @@ class JElementCheckconfigbutton extends JElement
 		$node->addAttribute('size', $size);
 		$input_new = $parameter_txt->fetchElement($name, $value, $node, $control_name);
 		
+		$hidden_debug = $parameter_hid->fetchElement($name, "JPATH_SITE:".JPATH_SITE, $node, $control_name);
+
 		$js = 'onclick="javascript:window.parent.onMoveHelperFile(document.getElementById(\'paramsCurrent\'), document.getElementById(\'params'.$name.'\'), document.getElementById(\'lbl_working\'));"';
 		$btn = "<a href=\"#\" ".$js." >".JText::_( 'Move file to new location now' )."</a>";
 		
@@ -37,10 +39,11 @@ class JElementCheckconfigbutton extends JElement
 		$result .= '<br />'.JText::_( 'New location: ' ).'<br />'.$input_new;
 		$result .= '<br />'.$btn;
 		$result .= '<br />'.$lbl_working;
+		$result .= '<br />'.$hidden_debug;
 		
 		return $result;
 	}
-
+	
 	function appendDsIfNeeded($path)
 	{
 	  	if ( !empty( $path ) && substr( $path, -1 ) != DS )
