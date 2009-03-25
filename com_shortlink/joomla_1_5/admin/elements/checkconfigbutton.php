@@ -16,7 +16,16 @@ class JElementCheckconfigbutton extends JElement
 	{
 		$params = &JComponentHelper::getParams( 'com_shortlink' );
 		$source_path = $params->def('helper_path', JPATH_SITE.DS.'goto.php');
+		if ($source_path == 'goto.php')
+		{
+			$source_path = JPATH_SITE.DS.'goto.php';
+		}
 
+		if ($value == 'goto.php')
+		{
+			$value = JPATH_SITE.DS.'goto.php';
+		}
+		
 		$size = $node->attributes('size');
 
 		$parameter_txt =& $this->_parent->loadElement('text');
@@ -28,8 +37,6 @@ class JElementCheckconfigbutton extends JElement
 		$node->addAttribute('size', $size);
 		$input_new = $parameter_txt->fetchElement($name, $value, $node, $control_name);
 		
-		$hidden_debug = $parameter_hid->fetchElement($name, "JPATH_SITE:".JPATH_SITE, $node, $control_name);
-
 		$js = 'onclick="javascript:window.parent.onMoveHelperFile(document.getElementById(\'paramsCurrent\'), document.getElementById(\'params'.$name.'\'), document.getElementById(\'lbl_working\'));"';
 		$btn = "<a href=\"#\" ".$js." >".JText::_( 'Move file to new location now' )."</a>";
 		
@@ -39,7 +46,6 @@ class JElementCheckconfigbutton extends JElement
 		$result .= '<br />'.JText::_( 'New location: ' ).'<br />'.$input_new;
 		$result .= '<br />'.$btn;
 		$result .= '<br />'.$lbl_working;
-		$result .= '<br />'.$hidden_debug;
 		
 		return $result;
 	}
