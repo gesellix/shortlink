@@ -47,7 +47,16 @@ function getLink($params)
 	  {
 	  	$url_path = getUrlPath();
 	
-	    $link = $url_path."index.php?option=com_shortlink&phrase=".$phrase;
+	  	// optionally go to a subdirectory
+	    $link = $url_path;
+	    
+	    // base url
+	    $link .= "index.php?option=com_shortlink&phrase=".$phrase;
+
+	    // don't let Joomla send any output
+	    // see http://blog.joomlatools.eu/2008/01/joomla-15-generating-raw-ouput.html
+	    $link .= "&tmpl=component";
+	    
 	    break;
 	  }
 	} // foreach

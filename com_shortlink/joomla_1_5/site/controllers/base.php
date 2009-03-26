@@ -48,7 +48,7 @@ class ShortlinkControllerBase extends JController
 		}
 
 		// redirect to new location
-		header("Location: $link");
+		header("Location: ".$link);
 	}
 
   function isExternal($link)
