@@ -10,12 +10,12 @@ class ShortlinksViewShortlinks extends JView
 {
 	function display($tpl = null)
 	{
-		JToolBarHelper::title(   JText::_( 'Shortlinks Manager' ), 'generic.png' );
+		JToolBarHelper::title( JText::_( 'Shortlinks Manager' ), 'generic.png' );
 		JToolBarHelper::deleteList();
 		JToolBarHelper::editListX();
 		JToolBarHelper::addNewX();
 		JToolBarHelper::preferences('com_shortlink', '300');
-		//JToolBarHelper::help( 'screen.shortlink' );
+		//JToolBarHelper::help( 'screen.shortlink' ); TODO
 
 		$document = &JFactory::getDocument();
 		$document->addScript(JURI::root(true).'/administrator/components/com_shortlink/assets/helper.js');
@@ -51,20 +51,19 @@ class ShortlinksViewShortlinks extends JView
 
 		$texts = ShortlinksFilter::getLastCallSelections();
 		
-		// TODO externalize texts
-    	$texts['total'] .= "(".$counters['total'].")";
-		$texts['never'] .= "(".$counters['never']."/".$counters['total'].")";
-		$texts['last_weeks_1'] .= "(".$counters['last_weeks_1']."/".$counters['total'].")";
-		$texts['last_weeks_2'] .= "(".$counters['last_weeks_2']."/".$counters['total'].")";
-		$texts['last_weeks_3'] .= "(".$counters['last_weeks_3']."/".$counters['total'].")";
-		$texts['last_weeks_4'] .= "(".$counters['last_weeks_4']."/".$counters['total'].")";
-		$texts['last_months_1'] .= "(".$counters['last_months_1']."/".$counters['total'].")";
-		$texts['last_months_2'] .= "(".$counters['last_months_2']."/".$counters['total'].")";
-		$texts['last_months_3'] .= "(".$counters['last_months_3']."/".$counters['total'].")";
-		$texts['last_months_4'] .= "(".$counters['last_months_4']."/".$counters['total'].")";
-		$texts['last_months_5'] .= "(".$counters['last_months_5']."/".$counters['total'].")";
-		$texts['last_months_6'] .= "(".$counters['last_months_6']."/".$counters['total'].")";
-		$texts['last_year'] .= "(".$counters['last_year']."/".$counters['total'].")";
+    	$texts['total'] .= " (".$counters['total'].")";
+		$texts['never'] .= " (".$counters['never']."/".$counters['total'].")";
+		$texts['last_weeks_1'] .= " (".$counters['last_weeks_1']."/".$counters['total'].")";
+		$texts['last_weeks_2'] .= " (".$counters['last_weeks_2']."/".$counters['total'].")";
+		$texts['last_weeks_3'] .= " (".$counters['last_weeks_3']."/".$counters['total'].")";
+		$texts['last_weeks_4'] .= " (".$counters['last_weeks_4']."/".$counters['total'].")";
+		$texts['last_months_1'] .= " (".$counters['last_months_1']."/".$counters['total'].")";
+		$texts['last_months_2'] .= " (".$counters['last_months_2']."/".$counters['total'].")";
+		$texts['last_months_3'] .= " (".$counters['last_months_3']."/".$counters['total'].")";
+		$texts['last_months_4'] .= " (".$counters['last_months_4']."/".$counters['total'].")";
+		$texts['last_months_5'] .= " (".$counters['last_months_5']."/".$counters['total'].")";
+		$texts['last_months_6'] .= " (".$counters['last_months_6']."/".$counters['total'].")";
+		$texts['last_year'] .= " (".$counters['last_year']."/".$counters['total'].")";
 				
 		foreach($counters as $key => $value)
 		{

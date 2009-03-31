@@ -33,7 +33,7 @@ class ShortlinksViewShortlink extends JView
 			JToolBarHelper::cancel();
 		} else {
 			// for existing items the button is renamed `close`
-			JToolBarHelper::cancel( 'cancel', 'Close' );
+			JToolBarHelper::cancel( 'cancel', JText::_('Close'));
 		}
 
 		$this->assignRef('shortlink',		$shortlink);

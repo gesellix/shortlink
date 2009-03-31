@@ -39,9 +39,9 @@ class ShortlinksControllerShortlink extends ShortlinksControllerBase
 		$model = $this->getModel('shortlink');
 
 		if ($model->store($post)) {
-			$msg = JText::_( 'Shortlink Saved!' );
+			$msg = JText::_( 'Shortlink saved!' );
 		} else {
-			$msg = JText::_( 'Error Saving Shortlink' );
+			$msg = JText::_( 'Error saving Shortlink' );
 		}
 
 		$link = 'index.php?option=com_shortlink';
@@ -56,9 +56,9 @@ class ShortlinksControllerShortlink extends ShortlinksControllerBase
 	{
 		$model = $this->getModel('shortlink');
 		if(!$model->delete()) {
-			$msg = JText::_( 'Error: One or More Shortlinks Could not be Deleted' );
+			$msg = JText::_( 'Error: One or more Shortlinks could not be deleted' );
 		} else {
-			$msg = JText::_( 'Shortlink(s) Deleted' );
+			$msg = JText::_( 'Shortlink(s) deleted' );
 		}
 
 		$this->setRedirect( 'index.php?option=com_shortlink', $msg );
@@ -70,7 +70,7 @@ class ShortlinksControllerShortlink extends ShortlinksControllerBase
 	 */
 	function cancel()
 	{
-		$msg = JText::_( 'Operation Cancelled' );
+		$msg = JText::_( 'Operation cancelled' );
 		$this->setRedirect( 'index.php?option=com_shortlink', $msg );
 	}
 }
