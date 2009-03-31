@@ -10,9 +10,9 @@
     <option value="id">ID</option>
     <option value="phrase">Phrase</option>
     <option value="link">Link</option>
-    <option value="description">Dscription</option>
+    <option value="description">Description</option>
     <option value="create_date">Created</option>
-    <option value="last_call">Last Call</option>
+    <option value="last_call">Last call</option>
     <option value="counter">Hits</option>
     <option value="avg_hits">avg. Hits (days)</option>
   </param>
