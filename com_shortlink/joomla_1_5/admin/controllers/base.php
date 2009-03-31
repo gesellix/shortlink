@@ -31,13 +31,13 @@ class ShortlinksControllerBase extends JController
 		$matches = preg_match($pattern_path, $source_path);
     	if (!$matches || !file_exists($source_path))
     	{
-			$this->closeAjax("'path_old' is wrong or doesn't exist.");
+			$this->closeAjax(JText::_("ERR_WRONG_PATH_OLD"));
 			return;
 		}
     	$matches = preg_match($pattern_path, $target_path);
 		if (empty($target_path))
 		{
-			$this->closeAjax("'path_new' is wrong.");
+			$this->closeAjax(JText::_("ERR_WRONG_PATH_NEW"));
 			return;
 		}
 		
@@ -69,11 +69,11 @@ class ShortlinksControllerBase extends JController
 			
 			unlink($source_path);
 
-			$this->closeAjax("Success moving ".$source_path." to ".$target_path);
+			$this->closeAjax(JText::_("Success moving ".$source_path." to ".$target_path));
 		}
 		else
 		{
-			$this->closeAjax("Error moving ".$source_path." to ".$target_path);
+			$this->closeAjax(JText::_("Error moving ".$source_path." to ".$target_path));
 		}
 		
 		// $mainframe should already be closed here (AJAX request)!
