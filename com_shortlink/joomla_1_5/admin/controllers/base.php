@@ -53,9 +53,12 @@ class ShortlinksControllerBase extends JController
 		    	$matches = preg_match("/define\('JPATH_BASE', .*\);/", $line);
 		    	if ($matches)
 		    	{
-		    		// cut off '/goto.php'
-		    		$tmp = substr($target_path, 0, strrpos($target_path, DS));
-			    	$tmp = preg_replace('#\\'.DS.'#', '\'.DS.\'', $tmp);
+		    		// use JPATH_ROOT allways for path to joomla:
+            $tmp = JPATH_ROOT;
+            // replace directory separators with locally valid ones
+			      $tmp = preg_replace('#\\\\#', DS, $tmp);
+			      $tmp = preg_replace('#/#', DS, $tmp);
+            $tmp = preg_replace('#\\'.DS.'#', '\'.DS.\'', $tmp);
 
 		    		fwrite($handle, "define('JPATH_BASE', '".$tmp."' );\n");
 		    	}
