@@ -62,7 +62,7 @@ function updateUserlink()
 				</label>
 			</td>
 			<td>
-				<input class="inputbox" type="text" name="phrase" id="phrase" size="32" maxlength="100" value="<?php echo $this->shortlink->phrase;?>" onchange="javascript:updateUserlink();" />
+				<input class="inputbox" type="text" name="phrase" id="phrase" size="100" maxlength="100" value="<?php echo $this->shortlink->phrase;?>" onchange="javascript:updateUserlink();" />
 			</td>
 			<td>
 				<a href="#" onclick="javascript:document.forms['adminForm'].phrase.value='<?php echo uniqid(""); ?>'; updateUserlink();"><?php echo JText::_( 'Set random phrase' ); ?></a>
@@ -75,7 +75,7 @@ function updateUserlink()
 				</label>
 			</td>
 			<td colspan="2">
-				<input class="inputbox" type="text" name="description" id="description" size="32" maxlength="255" value="<?php echo $this->shortlink->description;?>" />
+				<input class="inputbox" type="text" name="description" id="description" size="100" maxlength="255" value="<?php echo $this->shortlink->description;?>" />
 			</td>
 		</tr>
 		<tr>
@@ -95,7 +95,7 @@ function updateUserlink()
 				</label>
 			</td>
 			<td colspan="2">
-				<input class="inputbox" type="text" name="link_url" id="link_url" size="32" maxlength="255" value="<?php echo $this->shortlink->link_url;?>" onchange="javascript:document.adminForm.link_article.value = 0; return false;" />
+				<input class="inputbox" type="text" name="link_url" id="link_url" size="100" maxlength="255" value="<?php echo $this->shortlink->link_url;?>" onchange="javascript:document.adminForm.link_article.value = 0; return false;" />
 			</td>
 		</tr>
 		<tr>
@@ -105,7 +105,7 @@ function updateUserlink()
 				</label>
 			</td>
 			<td>
-				<input readonly="readonly" class="inputbox" type="text" name="link_user" id="link_user" size="32" maxlength="255" value="" />
+				<input readonly="readonly" class="inputbox" type="text" name="link_user" id="link_user" size="100" maxlength="255" value="" />
 			</td>
 			<td>
 				 <a href="#" onclick="updateUserlink();"><?php echo JText::_( 'Update' ); ?></a>
