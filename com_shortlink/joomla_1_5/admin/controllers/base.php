@@ -22,21 +22,25 @@ class ShortlinksControllerBase extends JController
 		$source_path = JRequest::getVar( 'path_old' );
 		$target_path = JRequest::getVar( 'path_new' );
 
-    	// replace directory separators with locally valid ones
-    	$target_path = preg_replace('#\\\\#', DS, $target_path);
-    	$target_path = preg_replace('#/#', DS, $target_path);
+    // replace directory separators with locally valid ones
+    $target_path = preg_replace('#\\\\#', DS, $target_path);
+    $target_path = preg_replace('#/#', DS, $target_path);
 		
 		$pattern_path = '#.+?\\'.DS.'.+?#'; 
 
 		$matches = preg_match($pattern_path, $source_path);
-    	if (!$matches || !file_exists($source_path))
-    	{
+    if (!$matches || !file_exists($source_path))
+    {
 			$this->closeAjax(JText::_("ERR_WRONG_PATH_OLD"));
 			return;
 		}
-    	$matches = preg_match($pattern_path, $target_path);
-		if (empty($target_path))
+    $matches = preg_match($pattern_path, $target_path);
+    // Check if the new path is not out of the domain root!
+    $regExp = '$^'.preg_quote($_SERVER["DOCUMENT_ROOT"]).'$i';
+		if (!$matches || empty($target_path) || !preg_match($regExp, $target_path))
 		{
+			// TODO: If moving to new path is not possible either don't let save the settings or
+			// set the new path to old path!
 			$this->closeAjax(JText::_("ERR_WRONG_PATH_NEW"));
 			return;
 		}
