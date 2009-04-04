@@ -16,16 +16,18 @@ class ShortlinksViewShortlink extends JView
 		$articles		=& $this->get('Articles');
 
     	$baseURL = $params->def('url_path', JURI::root());
+    	
+    	$baseURL = "";
+    	$baseURL .= ($_SERVER["SERVER_PORT"]=="443" ? "https" : "http").":////";
+    	$baseURL .= $_SERVER["HTTP_HOST"]."/";
+    	$baseURL .= str_replace($_SERVER["DOCUMENT_ROOT"], "", $params->def('helper_path', ''));
+    	$baseURL = str_replace("//", "/", $baseURL);
 
 		// http://www.example.com/goto.php?link=
     	$fullshortLink = $baseURL;
-    	if ((strrpos($fullshortLink, "/") + 1) < strlen($fullshortLink)) {
-    		$fullshortLink .= "/";
-    	}
     	// Because we can have more than one paramname for the shorlink we take the first given:
     	$linknames = explode(",", $params->get('paramname', 'link'));
-    	// TODO: We need a way to get the url of the shortlink (e.g. http://www.example.com/index.php) because now the path to the cms is taken (e.g. http://www.example.com/cms/goto.php)
-    	$fullshortLink .= $params->def('filename', 'goto.php')."?".$linknames[0]."=";
+      $fullshortLink .= "?".$linknames[0]."=";
 		
 		$isNew		= ($shortlink->id < 1);
 
