@@ -5,7 +5,7 @@
   <param name="helper_path" type="checkconfigbutton" default="" label="HELPER_PATH_LABEL" description="HELPER_PATH_DESC" size="80" />
   <param name="spacer" type="spacer" default="&lt;hr /&gt;Other options" label="" description="" />
   <param name="paramname" type="text" default="link" label="PARAMNAME_LABEL" description="PARAMNAME_DESC" />
-  <param name="last_call" type="lastcalllist" default="total" label="LASTCALL_LABEL" description="LASTCALL_DESC" />
+  <param name="def_filter_last_call" type="lastcalllist" default="total" label="LASTCALL_LABEL" description="LASTCALL_DESC" />
   <param name="def_filter_order" type="list" default="id" label="DEFAULTFILTERORDER_LABEL" description="DEFAULTFILTERORDER_DESC">
     <option value="id">ID</option>
     <option value="phrase">Phrase</option>
