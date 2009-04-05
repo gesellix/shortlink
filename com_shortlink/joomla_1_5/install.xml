@@ -19,9 +19,9 @@
 	<params>
 		<param name="helper_path" default="goto.php" />
 		<param name="paramname" default="link" />
-		<param name="last_call" default="total" />
-		<param name="def_filter_order" default="id" />
-		<param name="def_filter_dir" default="desc" />
+		<param name="filter_last_call" default="total" />
+		<param name="filter_order" default="id" />
+		<param name="filter_dir" default="desc" />
 	</params>
 
 	<files folder="site">

@@ -80,9 +80,9 @@ class ShortlinksViewShortlinks extends JView
 
 		$params = &JComponentHelper::getParams( 'com_shortlink' );
 		$context			= 'com_shortlink.shortlinks.list.';
-		$filter_order		= $mainframe->getUserStateFromRequest( $context.'filter_order',		'filter_order',		$params->def('def_filter_order', 'id'),		'cmd' );
-		$filter_order_dir	= $mainframe->getUserStateFromRequest( $context.'filter_order_dir', 	'filter_order_Dir', 	$params->def('def_filter_dir', 'asc'),		'word' );
-		$filter_last_call	= $mainframe->getUserStateFromRequest( $context.'filter_last_call', 	'filter_last_call', 	$params->def('def_filter_last_call', 'total'),	'string' );
+		$filter_order		= $mainframe->getUserStateFromRequest( $context.'filter_order',		'filter_order',		$params->def('filter_order', 'id'),		'cmd' );
+		$filter_order_dir	= $mainframe->getUserStateFromRequest( $context.'filter_order_dir', 	'filter_order_Dir', 	$params->def('filter_dir', 'asc'),		'word' );
+		$filter_last_call	= $mainframe->getUserStateFromRequest( $context.'filter_last_call', 	'filter_last_call', 	$params->def('filter_last_call', 'total'),	'string' );
 		$search				= $mainframe->getUserStateFromRequest( $context.'search', 		'search', 		'',						'string' );
 
 		$limit				= $mainframe->getUserStateFromRequest( 'global.list.limit', 		'limit', 		$mainframe->getCfg('list_limit'),		'int' );
