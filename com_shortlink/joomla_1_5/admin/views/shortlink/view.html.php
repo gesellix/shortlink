@@ -23,11 +23,10 @@ class ShortlinksViewShortlink extends JView
     	$baseURL .= str_replace($_SERVER["DOCUMENT_ROOT"], "", $params->def('helper_path', ''));
     	$baseURL = str_replace("//", "/", $baseURL);
 
-		// http://www.example.com/goto.php?link=
-    	$fullshortLink = $baseURL;
     	// Because we can have more than one paramname for the shorlink we take the first given:
     	$linknames = explode(",", $params->get('paramname', 'link'));
-      $fullshortLink .= "?".$linknames[0]."=";
+    	// http://www.example.com/goto.php?link=
+    	$fullshortLink = $baseURL."?".$linknames[0]."=";
 		
 		$isNew		= ($shortlink->id < 1);
 

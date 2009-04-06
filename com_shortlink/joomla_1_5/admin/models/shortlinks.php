@@ -24,10 +24,12 @@ class ShortlinksModelShortlinks extends JModel
 
 	function _buildQuery()
 	{
+		$joins = $this->_filter->getJoins();
 		$where = $this->_filter->getWhere();
 		$order_by = $this->_filter->getOrderBy();
 		
 		$query = ' SELECT * FROM #__shortlink ';
+		$query .= $joins;
 		$query .= $where;
 		$query .= $order_by;
 
@@ -45,6 +47,7 @@ class ShortlinksModelShortlinks extends JModel
 		}
 		
 		$query = ' SELECT COUNT(*) FROM #__shortlink ';
+		$query .= $this->_filter->getJoins();
 
 		$wheres = $this->_filter->appendLastCallClauses($where_main);
 
