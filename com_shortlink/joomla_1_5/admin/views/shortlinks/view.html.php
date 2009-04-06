@@ -15,7 +15,7 @@ class ShortlinksViewShortlinks extends JView
 		JToolBarHelper::editListX();
 		JToolBarHelper::addNewX();
 		JToolBarHelper::preferences('com_shortlink', '350');
-		//JToolBarHelper::help( 'screen.shortlink' ); TODO
+		JToolBarHelper::help( 'screen.shortlink', true ); // TODO
 
 		$document = &JFactory::getDocument();
 		$document->addScript(JURI::root(true).'/administrator/components/com_shortlink/assets/helper.js');
