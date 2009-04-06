@@ -14,16 +14,18 @@ class JElementCheckconfigbutton extends JElement
 
 	function fetchElement($name, $value, &$node, $control_name)
 	{
+		$default_path = JPATH_SITE.DS.'goto.php';
+
 		$params = &JComponentHelper::getParams( 'com_shortlink' );
-		$source_path = $params->def('helper_path', JPATH_SITE.DS.'goto.php');
+		$source_path = $params->def('helper_path', $default_path);
 		if ($source_path == 'goto.php')
 		{
-			$source_path = JPATH_SITE.DS.'goto.php';
+			$source_path = $default_path;
 		}
 
 		if ($value == 'goto.php')
 		{
-			$value = JPATH_SITE.DS.'goto.php';
+			$value = $default_path;
 		}
 		
 		$size = $node->attributes('size');

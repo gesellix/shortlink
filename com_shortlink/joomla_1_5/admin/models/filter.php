@@ -134,22 +134,22 @@ class ShortlinksFilter
 			$keyword_escaped = $db->quote( '%'.$db->getEscaped( $this->keyword, true ).'%', false );
 
 			$where_keyword  = '( ';
-			$where_keyword .= ' LOWER(`#__shortlink.phrase`) LIKE '.$keyword_escaped;
-			$where_keyword .= ' OR LOWER(`#__shortlink.description`) LIKE '.$keyword_escaped;
-			$where_keyword .= ' OR LOWER(`#__shortlink.link`) LIKE '.$keyword_escaped;
-			$where_keyword .= ' OR LOWER(`#__content.title`) LIKE '.$keyword_escaped;
-			$where_keyword .= ')';
+			$where_keyword .= ' LOWER(#__shortlink.phrase) LIKE '.$keyword_escaped;
+			$where_keyword .= ' OR LOWER(#__shortlink.description) LIKE '.$keyword_escaped;
+			$where_keyword .= ' OR LOWER(#__shortlink.link) LIKE '.$keyword_escaped;
+			$where_keyword .= ' OR LOWER(#__content.title) LIKE '.$keyword_escaped;
+			$where_keyword .= ') ';
 			$where[] = $where_keyword;
 		}
 
 		if ($this->last_call_min)
 		{
-			$where[] = '`#__shortlink.last_call` >= '.$db->quote( $db->getEscaped( $this->last_call_min ), false );
+			$where[] = '#__shortlink.last_call >= '.$db->quote( $db->getEscaped( $this->last_call_min ), false );
 		}
 		
 		if ($this->last_call_max)
 		{
-			$where[] = '`#__shortlink.last_call` <= '.$db->quote( $db->getEscaped( $this->last_call_max ), false );
+			$where[] = '#__shortlink.last_call <= '.$db->quote( $db->getEscaped( $this->last_call_max ), false );
 		}
 
 		$where = count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '';

@@ -28,7 +28,16 @@ class ShortlinksModelShortlinks extends JModel
 		$where = $this->_filter->getWhere();
 		$order_by = $this->_filter->getOrderBy();
 		
-		$query = ' SELECT * FROM #__shortlink ';
+		$query = ' SELECT ';
+		$query .= ' #__shortlink.id,';
+		$query .= ' #__shortlink.phrase,';
+		$query .= ' #__shortlink.link,';
+		$query .= ' #__shortlink.description,';
+		$query .= ' #__shortlink.target,';
+		$query .= ' #__shortlink.counter,';
+		$query .= ' #__shortlink.create_date,';
+		$query .= ' #__shortlink.last_call ';
+		$query .= ' FROM #__shortlink ';
 		$query .= $joins;
 		$query .= $where;
 		$query .= $order_by;
