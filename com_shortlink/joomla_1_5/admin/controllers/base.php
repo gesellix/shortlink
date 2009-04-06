@@ -36,8 +36,13 @@ class ShortlinksControllerBase extends JController
 		}
 
 		$matches = preg_match($pattern_path, $target_path);
-	    // Check if the new path is not out of the domain root!
-	    $regExp = '$^'.preg_quote($_SERVER["DOCUMENT_ROOT"]).'$i';
+
+		// replace directory separators with locally valid ones
+		$regExp = $this->replaceDS($_SERVER["DOCUMENT_ROOT"]);
+		$regExp = preg_quote($regExp);
+		$regExp = '$^'.$regExp.'$i';
+
+		// Check if the new path is not out of the domain root!
 		if (!$matches || empty($target_path) || !preg_match($regExp, $target_path))
 		{
 			// TODO: If moving to new path is not possible either don't let save the settings or
@@ -59,11 +64,7 @@ class ShortlinksControllerBase extends JController
 		    	if ($matches)
 		    	{
 		    		// use JPATH_ROOT always for path to joomla:
-		            $tmp = JPATH_ROOT;
-		            // replace directory separators with locally valid ones
-					$tmp = preg_replace('#\\\\#', DS, $tmp);
-					$tmp = preg_replace('#/#', DS, $tmp);
-
+		            $tmp = $this->replaceDS(JPATH_ROOT);
 					$tmp = preg_replace('#\\'.DS.'#', '\'.DS.\'', $tmp);
 
 		    		fwrite($handle, "define('JPATH_BASE', '".$tmp."' );\n");
@@ -103,6 +104,14 @@ class ShortlinksControllerBase extends JController
 		$mainframe->close();
 	}
 	
+	function replaceDS($path)
+	{
+		// replace directory separators with locally valid ones
+		$tmp = preg_replace('#\\\\#', DS, $path);
+		$tmp = preg_replace('#/#', DS, $path);
+		return $tmp;
+	}
+
 	function appendDsIfNeeded($path)
 	{
 	  	if ( !empty( $path ) && substr( $path, -1 ) != DS )
