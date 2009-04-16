@@ -43,6 +43,8 @@ function initDB($database)
   $database->query();
   $database->setQuery("INSERT IGNORE INTO `".$myTable."` VALUES ('', 'deejay_', 'http://www.fotoeck.at/', '_blank', 0, 'Daniel Janesch', NOW(), '0000-00-00 00:00:00')");
   $database->query();
+  $database->setQuery("INSERT IGNORE INTO `".$myTable."` VALUES ('', 'joomla', 'http://www.joomla.org/', '_blank', 0, 'Joomla! homepage', NOW(), '0000-00-00 00:00:00')");
+  $database->query();
 }
 
 function findField($fieldName, $fields)

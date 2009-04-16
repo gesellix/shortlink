@@ -4,8 +4,14 @@ defined('_JEXEC') or die( 'Restricted access' );
 
 function com_uninstall()
 {
+	$default_path = JPATH_SITE.DS.'goto.php';
+
 	$params = &JComponentHelper::getParams( 'com_shortlink' );
-	$helper_path = $params->get('helper_path', JPATH_SITE.DS.'goto.php');
+	$helper_path = $params->get('helper_path', $default_path);
+	if ($helper_path == 'goto.php')
+	{
+		$helper_path = $default_path;
+	}
 	
 	unlink($helper_path);
 ?>
