@@ -2,7 +2,7 @@
 <install type="module" version="1.5.0" method="upgrade">
 	<name>Shortlink</name> 
 	<author>Tobias Gesellchen</author> 
-	<creationDate>2009-02-22</creationDate> 
+	<creationDate>2009-03-20</creationDate> 
 	<copyright>(c) 2009 Tobias Gesellchen</copyright>
 	<license>GPL</license> 
 	<authorEmail>tobias@gesellix.de</authorEmail>
@@ -26,10 +26,11 @@
     </languages>
 
 	<params name="" description="">
-		<param name="introduction" type="textarea" cols="20" rows="5" default="" label="Introduction" description="A small descriptive introduction above the search form (optional)." />
-		<param name="showcbo" type="radio" default="" label="Display mode" description="You may select to show an input field or a dropdown list.">
-			<option value="">Input field</option>
+		<param name="introduction" type="textarea" cols="20" rows="5" default="0" label="Introduction" description="A small descriptive introduction above the search form (optional)." />
+		<param name="presentation" type="radio" default="2" label="Display mode" description="You may select to show an input field, a dropdown list or a combination of both.">
+			<option value="0">Input field</option>
 			<option value="1">Dropdown box</option>
+			<option value="2">Combined</option>
 		</param>
 	</params>
 </install>
