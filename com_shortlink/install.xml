@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install type="component" version="1.5.0" method="upgrade">
-	<name>Shortlink</name>
-	<creationDate>2009-03-20</creationDate>
-	<author>Tobias Gesellchen</author>
-	<authorEmail>tobias@gesellix.de</authorEmail>
-	<authorUrl>http://www.gesellix.de/</authorUrl>
-	<copyright>(c) 2009 Tobias Gesellchen</copyright>
-	<license>GPL</license>
-	<version>3.0</version>
-	<description>
-		<![CDATA[
-		    Shortlink component for Joomla.<br />
-		    A short to long links translator.<br />
-		    &copy; Tobias Gesellchen, <a href="http://www.gesellix.de/" target="_blank">www.gesellix.de</a>
-	    ]]>
-    </description>
+<install type="component" version="1.6.0" method="upgrade">
+   <name>Shortlinks</name>
+   <creationDate>2009-03-20</creationDate>
+   <author>Tobias Gesellchen</author>
+   <authorEmail>tobias@gesellix.de</authorEmail>
+   <authorUrl>http://www.gesellix.de/</authorUrl>
+   <copyright>(c) 2009-2012 Tobias Gesellchen</copyright>
+   <license>GPL</license>
+   <version>3.0</version>
+   <description>
+      <![CDATA[
+         Shortlink component for Joomla.<br />
+         A short to long links translator.<br />
+         &copy; Tobias Gesellchen, <a href="http://www.gesellix.de/" target="_blank">www.gesellix.de</a>
+      ]]>
+   </description>
 
-	<params>
-		<param name="helper_path" default="goto.php" />
-		<param name="paramname" default="link" />
-		<param name="filter_last_call" default="total" />
-		<param name="filter_order" default="id" />
-		<param name="filter_dir" default="desc" />
-	</params>
+   <config>
+      <fields name="params">
+         <fieldset name="basic">
+            <field name="helper_path" default="goto.php"/>
+            <field name="paramname" default="link"/>
+            <field name="filter_last_call" default="total"/>
+            <field name="filter_order" default="id"/>
+            <field name="filter_dir" default="desc"/>
+         </fieldset>
+      </fields>
+   </config>
 
-	<files folder="site">
-		<filename>goto.php</filename>
-		<filename>shortlink.php</filename>
-		<filename>index.html</filename>
-		<folder>models</folder>
-		<folder>controllers</folder>
-	</files>
+   <files folder="site">
+      <filename>goto.php</filename>
+      <filename>shortlink.php</filename>
+      <filename>index.html</filename>
+      <folder>models</folder>
+      <folder>controllers</folder>
+   </files>
 
-    <installfile>install.shortlink.php</installfile>
- 
-    <uninstallfile>uninstall.shortlink.php</uninstallfile>
+   <installfile>install.shortlink.php</installfile>
 
-	<install>
-		<sql>
-			<file charset="utf8" driver="mysql">install.sql</file>
-		</sql>
-	</install>
-	<uninstall>
-		<sql>
-			<file charset="utf8" driver="mysql">uninstall.sql</file>
-		</sql>
-	</uninstall>	
+   <uninstallfile>uninstall.shortlink.php</uninstallfile>
 
-   	<administration>
+   <install>
+      <sql>
+         <file charset="utf8" driver="mysql">install.sql</file>
+      </sql>
+   </install>
+   <uninstall>
+      <sql>
+         <file charset="utf8" driver="mysql">uninstall.sql</file>
+      </sql>
+   </uninstall>
 
-		<menu>Shortlink</menu>
+   <administration>
 
-		<files folder="admin">
-			<filename>shortlink.php</filename>
-			<filename>config.xml</filename>
-			<filename>index.html</filename>
-			<filename>install.sql</filename>
-			<filename>uninstall.sql</filename>
-			<folder>assets</folder>
-			<folder>controllers</folder>
-			<folder>elements</folder>
-			<folder>help</folder>
-			<folder>models</folder>
-			<folder>tables</folder>
-			<folder>views</folder>
-		</files>		
+      <menu>Shortlink</menu>
 
-		<languages folder="admin">
-			<language tag="en-GB">language/en-GB.com_shortlink.ini</language>
-			<language tag="de-DE">language/de-DE.com_shortlink.ini</language>
-		</languages>
+      <files folder="admin">
+         <filename>shortlink.php</filename>
+         <filename>config.xml</filename>
+         <filename>index.html</filename>
+         <filename>install.sql</filename>
+         <filename>uninstall.sql</filename>
+         <folder>assets</folder>
+         <folder>controllers</folder>
+         <folder>elements</folder>
+         <folder>help</folder>
+         <folder>models</folder>
+         <folder>tables</folder>
+         <folder>views</folder>
+      </files>
 
-	</administration>
+      <languages folder="admin">
+         <language tag="en-GB">language/en-GB.com_shortlink.ini</language>
+         <language tag="de-DE">language/de-DE.com_shortlink.ini</language>
+      </languages>
+
+   </administration>
 </install>
