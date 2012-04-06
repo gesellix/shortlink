@@ -109,7 +109,6 @@ function getArticleSelectList($articles, $active = NULL) {
                </td>
                <td>
                   <a href="#" onclick="updateUserlink();"><?php echo JText::_('Update'); ?></a>
-                  <p>JPATH_SITE: <?php echo JPATH_SITE; ?></p>
                </td>
             </tr>
          </table>

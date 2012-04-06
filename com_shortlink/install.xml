@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.6.0" method="upgrade">
-   <name>Shortlinks</name>
+   <name>Shortlink</name>
    <creationDate>2009-03-20</creationDate>
    <author>Tobias Gesellchen</author>
    <authorEmail>tobias@gesellix.de</authorEmail>
