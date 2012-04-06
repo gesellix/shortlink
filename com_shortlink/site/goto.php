@@ -27,7 +27,7 @@ function getParams() {
    require_once (JPATH_BASE . DS . 'includes' . DS . 'framework.php');
 
    // initializes the framework, so that the JComponentHelper can be found
-   JFactory::getApplication('site');
+   $app = JFactory::getApplication('site');
    $params = &JComponentHelper::getParams('com_shortlink');
 
    return $params;

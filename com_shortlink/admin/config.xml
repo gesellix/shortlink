@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-   <params>
-      <url addpath="/administrator/components/com_shortlink/elements">
-         <param name="spacer" type="spacer" default="&lt;hr /&gt;Location of the original 'goto.php'" label="" description=""/>
-         <param name="helper_path" type="checkconfigbutton" default="" label="HELPER_PATH_LABEL" description="HELPER_PATH_DESC" size="80"/>
-         <param name="spacer" type="spacer" default="&lt;hr /&gt;Other options" label="" description=""/>
-         <param name="paramname" type="text" default="link" label="PARAMNAME_LABEL" description="PARAMNAME_DESC"/>
-         <param name="filter_last_call" type="lastcalllist" default="total" label="LASTCALL_LABEL" description="LASTCALL_DESC"/>
-         <param name="filter_order" type="list" default="id" label="DEFAULTFILTERORDER_LABEL" description="DEFAULTFILTERORDER_DESC">
+   <fields name="params">
+      <fieldset name="config"
+                label="Shortlink configuration"
+                description="Options for the Shortlink component"
+                addfieldpath="/administrator/components/com_shortlink/elements">
+
+         <field name="spacer" type="spacer" default="&lt;hr /&gt;Location of the original 'goto.php'" label="" description=""
+                scope="com_shortlink"/>
+
+         <field name="helper_path" type="checkconfigbutton" default="" label="HELPER_PATH_LABEL" description="HELPER_PATH_DESC" size="80"
+                scope="com_shortlink"/>
+
+         <field name="spacer" type="spacer" default="&lt;hr /&gt;Other options" label="" description="" scope="com_shortlink"/>
+
+         <field name="paramname" type="text" default="link" label="PARAMNAME_LABEL" description="PARAMNAME_DESC" scope="com_shortlink"/>
+         <field name="filter_last_call" type="lastcalllist" default="total" label="LASTCALL_LABEL" description="LASTCALL_DESC"
+                scope="com_shortlink"/>
+         <field name="filter_order" type="list" default="id" label="DEFAULTFILTERORDER_LABEL" description="DEFAULTFILTERORDER_DESC"
+                scope="com_shortlink">
             <option value="id">ID</option>
             <option value="phrase">Phrase</option>
             <option value="link">Link</option>
@@ -16,11 +27,12 @@
             <option value="last_call">Last call</option>
             <option value="counter">Hits</option>
             <option value="avg_hits">avg. Hits (days)</option>
-         </param>
-         <param name="filter_dir" type="list" default="desc" label="DEFAULTFILTERDIR_LABEL" description="DEFAULTFILTERDIR_DESC">
+         </field>
+         <field name="filter_dir" type="list" default="desc" label="DEFAULTFILTERDIR_LABEL" description="DEFAULTFILTERDIR_DESC"
+                scope="com_shortlink">
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
-         </param>
-      </url>
-   </params>
+         </field>
+      </fieldset>
+   </fields>
 </config>

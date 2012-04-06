@@ -98,11 +98,4 @@ class ShortlinksControllerBase extends JController {
       $tmp = preg_replace('#/#', DS, $path);
       return $tmp;
    }
-
-   function appendDsIfNeeded($path) {
-      if (!empty($path) && substr($path, -1) != DS) {
-         $path .= DS;
-      }
-      return $path;
-   }
 }

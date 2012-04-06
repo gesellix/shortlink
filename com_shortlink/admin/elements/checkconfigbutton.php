@@ -2,16 +2,17 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-class JElementCheckconfigbutton extends JElement {
-   /**
-    * Element type
-    *
-    * @access   protected
-    * @var      string
-    */
-   var $_name = 'Checkconfigbutton';
+JForm::addFieldPath(JPATH_COMPONENT . DS . 'elements');
 
-   function fetchElement($name, $value, &$node, $control_name) {
+jimport('joomla.form.formfield');
+jimport('joomla.form.helper');
+JFormHelper::loadFieldClass('text');
+
+class JFormFieldCheckconfigbutton extends JFormFieldText {
+
+   public $type = 'Checkconfigbutton';
+
+   protected function getInput() {
       $default_path = JPATH_SITE . DS . 'goto.php';
 
       $params = &JComponentHelper::getParams('com_shortlink');
@@ -20,38 +21,39 @@ class JElementCheckconfigbutton extends JElement {
          $source_path = $default_path;
       }
 
-      if ($value == 'goto.php') {
-         $value = $default_path;
+      if ($this->value == 'goto.php') {
+         $this->value = $default_path;
       }
 
-      $size = $node->attributes('size');
+      $fieldCurrentHelperPath = JFormHelper::loadFieldType('text');
+      $fieldCurrentHelperPath->name = 'CurrentHelperPath';
+      $fieldCurrentHelperPath->id = 'CurrentHelperPath';
+      $fieldCurrentHelperPath->value = $source_path;
+      $fieldCurrentHelperPath->element['size'] = $this->element['size'];
 
-      $parameter_txt =& $this->_parent->loadElement('text');
-      $parameter_hid =& $this->_parent->loadElement('hidden');
+      $js = "<script>
+         window.addEvent('domready', function () {
+            $('btnChangePath').addEvent('click', function (e) {
+               e = new Event(e).stop();
 
-      $node->addAttribute('size', $size);
-      $input_cur = $parameter_txt->fetchElement('Current', $source_path, $node, $control_name);
+               var currentPath = document.getElementById('CurrentHelperPath');
+               var newPath = document.getElementById(".$this->id.");
+               var workingElem = document.getElementById('lblWorking');
 
-      $node->addAttribute('size', $size);
-      $input_new = $parameter_txt->fetchElement($name, $value, $node, $control_name);
+               window.parent.onMoveHelperFile(currentPath, newPath, workingElem);
+            });
+         });</script>";
 
-      $js = 'onclick="javascript:window.parent.onMoveHelperFile(document.getElementById(\'paramsCurrent\'), document.getElementById(\'params' . $name . '\'), document.getElementById(\'lbl_working\'));"';
-      $btn = "<a href=\"#\" " . $js . " >" . JText::_('Move file to new location now') . "</a>";
+      $btn = "<a id=\"btnChangePath\" href=\"#\">" . JText::_('Move file to new location now') . "</a>";
 
       $lbl_working = '<label id="lbl_working"></label>';
 
-      $result = JText::_('Current location: ') . '<br />' . $input_cur;
-      $result .= '<br />' . JText::_('New location: ') . '<br />' . $input_new;
+      $result = JText::_('Current location: ') . '<br />' . $fieldCurrentHelperPath->getInput();
+      $result .= '<br />' . JText::_('New location: ') . '<br />' . parent::getInput();
       $result .= '<br />' . $btn;
       $result .= '<br />' . $lbl_working;
+      $result .= $js;
 
       return $result;
-   }
-
-   function appendDsIfNeeded($path) {
-      if (!empty($path) && substr($path, -1) != DS) {
-         $path .= DS;
-      }
-      return $path;
    }
 }
