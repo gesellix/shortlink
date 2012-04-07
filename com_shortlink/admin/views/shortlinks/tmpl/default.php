@@ -77,13 +77,13 @@ function getAvgHits($create_date, $last_call, $counter) {
                <?php echo JHTML::_('grid.sort', 'Created', 'create_date', @$this->options['order_Dir'], @$this->options['order']); ?>
             </th>
             <th nowrap="nowrap">
-               <?php echo JHTML::_('grid.sort', 'Last Call', 'last_call', @$this->options['order_Dir'], @$this->options['order']); ?>
+               <?php echo JHTML::_('grid.sort', 'LAST_CALL', 'last_call', @$this->options['order_Dir'], @$this->options['order']); ?>
             </th>
             <th nowrap="nowrap">
                <?php echo JHTML::_('grid.sort', 'Hits', 'counter', @$this->options['order_Dir'], @$this->options['order']); ?>
             </th>
             <th nowrap="nowrap">
-               <?php echo JHTML::_('grid.sort', '&Oslash; Hits (days)', 'avg_hits', @$this->options['order_Dir'], @$this->options['order']); ?>
+               <?php echo JHTML::_('grid.sort', 'AVG_HITS_DAYS', 'avg_hits', @$this->options['order_Dir'], @$this->options['order']); ?>
             </th>
          </tr>
          </thead>

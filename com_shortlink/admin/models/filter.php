@@ -41,19 +41,19 @@ class ShortlinksFilter {
    }
 
    static function getLastCallSelections() {
-      $texts['total'] = "show all";
-      $texts['never'] = "never called";
-      $texts['last_weeks_1'] = "called within last week";
-      $texts['last_weeks_2'] = "called within last 2 weeks";
-      $texts['last_weeks_3'] = "called within last 3 weeks";
-      $texts['last_weeks_4'] = "called within last 4 weeks";
-      $texts['last_months_1'] = "called within last month";
-      $texts['last_months_2'] = "called within last 2 months";
-      $texts['last_months_3'] = "called within last 3 months";
-      $texts['last_months_4'] = "called within last 4 months";
-      $texts['last_months_5'] = "called within last 5 months";
-      $texts['last_months_6'] = "called within last 6 months";
-      $texts['last_year'] = "called within last year";
+      $texts['total'] = "show_all";
+      $texts['never'] = "never_called";
+      $texts['last_weeks_1'] = "called_within_last_week";
+      $texts['last_weeks_2'] = "called_within_last_2_weeks";
+      $texts['last_weeks_3'] = "called_within_last_3_weeks";
+      $texts['last_weeks_4'] = "called_within_last_4_weeks";
+      $texts['last_months_1'] = "called_within_last_month";
+      $texts['last_months_2'] = "called_within_last_2_months";
+      $texts['last_months_3'] = "called_within_last_3_months";
+      $texts['last_months_4'] = "called_within_last_4_months";
+      $texts['last_months_5'] = "called_within_last_5_months";
+      $texts['last_months_6'] = "called_within_last_6_months";
+      $texts['last_year'] = "called_within_last_year";
 
       return $texts;
    }

@@ -18,12 +18,14 @@
 
    <config>
       <fields name="params">
-         <fieldset name="basic" label="basic">
-            <field name="helper_path" default="goto.php"/>
+         <fieldset name="config" label="config">
             <field name="paramname" default="link"/>
             <field name="filter_last_call" default="total"/>
             <field name="filter_order" default="id"/>
             <field name="filter_dir" default="desc"/>
+         </fieldset>
+         <fieldset name="helper_path" label="helper_path">
+            <field name="helper_path" default="goto.php"/>
          </fieldset>
       </fields>
    </config>
@@ -65,14 +67,17 @@
          <folder>controllers</folder>
          <folder>elements</folder>
          <folder>help</folder>
+         <folder>language</folder>
          <folder>models</folder>
          <folder>tables</folder>
          <folder>views</folder>
       </files>
 
       <languages folder="admin">
-         <language tag="en-GB">language/en-GB.com_shortlink.ini</language>
-         <language tag="de-DE">language/de-DE.com_shortlink.ini</language>
+         <language tag="en-GB">language/en-GB/en-GB.com_shortlink.ini</language>
+         <language tag="en-GB">language/en-GB/en-GB.com_shortlink.sys.ini</language>
+         <language tag="de-DE">language/de-DE/de-DE.com_shortlink.ini</language>
+         <language tag="de-DE">language/de-DE/de-DE.com_shortlink.sys.ini</language>
       </languages>
 
    </administration>

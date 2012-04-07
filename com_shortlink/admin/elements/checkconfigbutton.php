@@ -37,21 +37,22 @@ class JFormFieldCheckconfigbutton extends JFormFieldText {
                e = new Event(e).stop();
 
                var currentPath = document.getElementById('CurrentHelperPath');
-               var newPath = document.getElementById(".$this->id.");
+               var newPath = document.getElementById('".$this->id."');
                var workingElem = document.getElementById('lblWorking');
 
                window.parent.onMoveHelperFile(currentPath, newPath, workingElem);
             });
          });</script>";
 
-      $btn = "<a id=\"btnChangePath\" href=\"#\">" . JText::_('Move file to new location now') . "</a>";
+      $btn = "<a id=\"btnChangePath\" href=\"#\">" . JText::_('MOVE_FILE_TO_NEW_LOCATION_NOW') . "</a>";
 
-      $lbl_working = '<label id="lbl_working"></label>';
+      $lbl_working = '<label id="lblWorking"></label>';
 
-      $result = JText::_('Current location: ') . '<br />' . $fieldCurrentHelperPath->getInput();
-      $result .= '<br />' . JText::_('New location: ') . '<br />' . parent::getInput();
-      $result .= '<br />' . $btn;
-      $result .= '<br />' . $lbl_working;
+      $result = "<div>";
+      $result .= "<br/>". "<label for=\"".$fieldCurrentHelperPath->id."\">". JText::_('CURRENT_LOCATION'). "</label>".$fieldCurrentHelperPath->getInput();
+      $result .= "<br/>". "<label for=\"".$this->id."\">". JText::_('NEW_LOCATION'). "</label>". parent::getInput();
+      $result .= "<br/>". "<label for=\"btnChangePath\">".$btn ."</label>". $lbl_working;
+      $result .= "</div>";
       $result .= $js;
 
       return $result;

@@ -39,6 +39,7 @@ class ShortlinksControllerBase extends JController {
       $regExp = '$^' . $regExp . '$i';
 
       // Check if the new path is not out of the domain root!
+      // TODO symlinks don't work here
       if (!$matches || empty($target_path) || !preg_match($regExp, $target_path)) {
          // TODO: If moving to new path is not possible either don't let save the settings or
          // set the new path to old path!

@@ -1,17 +1,23 @@
 var onMoveHelperFile = function (from, to, info) {
     var url = "index.php?option=com_shortlink&format=raw&task=rename";
-    url += "&path_old=" + from.value;
-    url += "&path_new=" + to.value;
+    var params = 'option=com_shortlink&format=raw&task=rename';
+    params += "&path_old=" + from.value;
+    params += "&path_new=" + to.value;
 
-    ajax = new Ajax(url, {
-        method:'get',
+    new Request.HTML({
+        url: 'index.php',
         onRequest:function () {
-            info.setHTML('please wait...')
+            info.innerText = 'please wait...';
         },
-        onComplete:function (response) {
-            info.setHTML('done!');
-            alert(response);
+        onSuccess:function (response) {
+            info.innerText = 'done!';
+            if (response && response.length > 0 && response[0].textContent) {
+                alert(response[0].textContent);
+            }
+        },
+        onFailure:function (xhr) {
+            info.innerText = 'done!';
+            alert(xhr);
         }
-    });
-    ajax.request();
+    }).get(params);
 };

@@ -8,7 +8,7 @@ jimport('joomla.html.pagination');
 
 class ShortlinksViewShortlinks extends JView {
    function display($tpl = null) {
-      JToolBarHelper::title(JText::_('Shortlinks Manager'), 'generic.png');
+      JToolBarHelper::title(JText::_('SHORTLINKS_MANAGER'), 'generic.png');
       JToolBarHelper::deleteList();
       JToolBarHelper::editListX();
       JToolBarHelper::addNewX();
