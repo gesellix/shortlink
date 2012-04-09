@@ -1,121 +1,133 @@
 <html>
 
 <head>
-	<title>Shortlink Documentation</title>
+   <title>Shortlink Documentation</title>
 </head>
 
 <body>
 
-	<h1>Shortlink Documentation</h1>
-	
-	<h2>Contents</h2>
-	<ul>
-		<li><a href="#intro">Introduction</a></li>
-		<li><a href="#component">Shortlink Component</a></li>
-		<li><a href="#module">Shortlink Module</a></li>
-	</ul>
+<h1>Shortlink Documentation</h1>
 
-	<a id="intro"><h2>Introduction</h2></a>
-	<p>
-	Shortlink is an extension to ease link exchange.
-	</p>
-	<p>
-	When exchanging links you often like to tell other people so called deep links, 
-	which directly lead to a concrete article or a specific sub site of a bigger homepage.
-	These deep links are hard to remember because they are too long or too much made of
-	parameters for the webserver or the content management system like Joomla!.
-	</p>
-	<p>
-	Joomla! lacks of an easy way to shorten links. You may use search engine optimized (SEO)
-	links which are much better to read or to remember. But to use that option you need
-	server side support in your webserver, you need know how to configure and last but
-	not least links still remain quite long. Apart from that many links change. Content is moved
-	or removed so that deep links can lead to an error page or, even worse, to a wrong article. 	
-	</p>
-	<p>
-	You need a solution to manage your links and to exchange them to your clients. You want your clients
-	to remember the link so that they don't have to find the right link in there notes or in your index.
-	You want them to find what they need with less input or clicks. 
-	</p>
-	<p>
-	Shortlink is a component to manage your important links. It lets you create short phrases or keywords
-	you can spread to your clients. They only need to remember that keyword and a little bit more if they directly
-	want to reach the target. They may also use the according module which helps them finding your article
-	even without knowing your keyword! When your content links change you only need to edit your existing shortlink
-	and your clients still are lead to the right target.
-	</p>
-		
-	<a id="component"><h2>Shortlink Component</h2></a>
-	<p>
-	The Shortlink component is easy to use. You create a shortlink by defining a phrase, then you select an article or enter a URL.
-	Optionally you enter a description. That's all!
-	The component shows you the resulting shorter link you can give to your clients. Out of the box you may use the
-	helper file 'goto.php' which is installed in your Joomla! root on component installation. So your resulting link
-	looks like
-	</p>
-	<pre>http://www.example.com/goto.php?link=keyword</pre>
-	<p>
-	The example consists of several parts:
-	</p>
-	<ol>
-		<li>http://www.example.com/ (your homepage URL)</li>
-		<li>goto.php (the helper file mentioned above)</li>
-		<li>?link= (parameter name)</li>
-		<li>keyword (your short keyword)</li>
-	</ol>
-	<p>
-	Everything is editable in the component configuration (well, only your homepage URL won't be editable ;-) ).
-	You may change the filename 'goto.php' and let the component move it to the correct location on your server.
-	You may change the parameter name 'link' to an even shorter name like 'l'.
-	And you define your keyword for each shortlink. So, a shorter link would look like
-	</p>
-	<pre>http://www.example.com/g.php?l=keyword</pre>
-	<p>
-	You won't need anything more, no configuration, no Joomla! core changes, nothing.
-	</p>
-	<p>
-	Shortlink gives you more. You get a little statistic for each shortlink. It helps you to recognize
-	popular or unused links. You may set some filter criteria to only see the most important links.
-	You may filter your complete collection of shortlinks with a filter box
-	to find shortlinks containing your search word in their phrase, description, URL or article title. 
-	</p>
-		
-	
-	<a id="module"><h2>Shortlink Module</h2></a>
-	<p>
-	The optional Shortlink module provides a new way to use your shortlinks. Instead of entering a link
-	like
-	</p>
-	<pre>http://www.example.com/g.php?l=keyword</pre>
-	<p>
-	in the adress bar, the visitor may select one of the available shortlinks or he can just enter the keyword.
-	</p>
-	<p>
-	After installation you have to enable/publish the module in the Joomla! Module Manager. You may select
-	where you want the module appear and configure all other default Joomla! parameters. But you may also
-	enter a little text to introduce the visitor or to help him using the module. 
-	</p>
-	<p>
-	Another option is the Display mode. It lets you configure the presentation of your module. Currently there are
-	three options available:
-	</p>
-	<ul>
-	<li>Input field</li>
-	<li>Dropdown box</li>
-	<li>Combined (Default)</li>
-	</ul>
-	<p>
-	The Input field enables the site visitor to enter a known keyword. The visitor has to press Enter to submit
-	his input and to let your site lead him to the target URL.
-	</p>
-	<p>
-	The Dropdown box lets the visitor select on of the available keywords. When selecting one of the entries,
-	your site leads him to the target URL. He cannot enter a keyword himself.
-	</p>
-	<p>
-	The default option combines both presentation forms. It lets the visitor enter a keyword and he can select
-	one from a drop-down list. 
-	</p>
+<h2>Contents</h2>
+<ul>
+   <li><a href="#intro">Introduction</a></li>
+   <li><a href="#component">Shortlink Component</a></li>
+   <li><a href="#module">Shortlink Module</a></li>
+</ul>
+
+<a id="intro"><h2>Introduction</h2></a>
+
+<p>
+   Shortlink is an extension to ease link exchange.
+</p>
+
+<p>
+   When exchanging links you often like to tell other people so called deep links,
+   which directly lead to a concrete article or a specific sub site of a bigger homepage.
+   These deep links are hard to remember because they are too long or too much made of
+   parameters for the webserver or the content management system like Joomla!.
+</p>
+
+<p>
+   Joomla! lacks of an easy way to shorten links. You may use search engine optimized (SEO)
+   links which are much better to read or to remember. But to use that option you need
+   server side support in your webserver, you need know how to configure and last but
+   not least links still remain quite long. Apart from that many links change. Content is moved
+   or removed so that deep links can lead to an error page or, even worse, to a wrong article.
+</p>
+
+<p>
+   You need a solution to manage your links and to exchange them to your clients. You want your clients
+   to remember the link so that they don't have to find the right link in there notes or in your index.
+   You want them to find what they need with less input or clicks.
+</p>
+
+<p>
+   Shortlink is a component to manage your important links. It lets you create short phrases or keywords
+   you can spread to your clients. They only need to remember that keyword and a little bit more if they directly
+   want to reach the target. They may also use the according module which helps them finding your article
+   even without knowing your keyword! When your content links change you only need to edit your existing shortlink
+   and your clients still are lead to the right target.
+</p>
+
+<a id="component"><h2>Shortlink Component</h2></a>
+
+<p>
+   The Shortlink component is easy to use. You create a shortlink by defining a phrase, then you select an article or enter a URL.
+   Optionally you enter a description. That's all!
+   The component shows you the resulting shorter link you can give to your clients. Out of the box you may use the
+   helper file 'goto.php' which is installed in your Joomla! root on component installation. So your resulting link
+   looks like
+</p>
+<pre>http://www.example.com/goto.php?link=keyword</pre>
+<p>
+   The example consists of several parts:
+</p>
+<ol>
+   <li>http://www.example.com/ (your homepage URL)</li>
+   <li>goto.php (the helper file mentioned above)</li>
+   <li>?link= (parameter name)</li>
+   <li>keyword (your short keyword)</li>
+</ol>
+<p>
+   Everything is editable in the component configuration (well, only your homepage URL won't be editable ;-) ).
+   You may change the filename 'goto.php' and let the component move it to the correct location on your server.
+   You may change the parameter name 'link' to an even shorter name like 'l'.
+   And you define your keyword for each shortlink. So, a shorter link would look like
+</p>
+<pre>http://www.example.com/g.php?l=keyword</pre>
+<p>
+   You won't need anything more, no configuration, no Joomla! core changes, nothing.
+</p>
+
+<p>
+   Shortlink gives you more. You get a little statistic for each shortlink. It helps you to recognize
+   popular or unused links. You may set some filter criteria to only see the most important links.
+   You may filter your complete collection of shortlinks with a filter box
+   to find shortlinks containing your search word in their phrase, description, URL or article title.
+</p>
+
+
+<a id="module"><h2>Shortlink Module</h2></a>
+
+<p>
+   The optional Shortlink module provides a new way to use your shortlinks. Instead of entering a link
+   like
+</p>
+<pre>http://www.example.com/g.php?l=keyword</pre>
+<p>
+   in the adress bar, the visitor may select one of the available shortlinks or he can just enter the keyword.
+</p>
+
+<p>
+   After installation you have to enable/publish the module in the Joomla! Module Manager. You may select
+   where you want the module appear and configure all other default Joomla! parameters. But you may also
+   enter a little text to introduce the visitor or to help him using the module.
+</p>
+
+<p>
+   Another option is the Display mode. It lets you configure the presentation of your module. Currently there are
+   three options available:
+</p>
+<ul>
+   <li>Input field</li>
+   <li>Dropdown box (Default)</li>
+   <li>Combined</li>
+</ul>
+<p>
+   The Input field enables the site visitor to enter a known keyword. The visitor has to press Enter to submit
+   his input and to let your site lead him to the target URL.
+</p>
+
+<p>
+   The Dropdown box lets the visitor select on of the available keywords. When selecting one of the entries,
+   your site leads him to the target URL. He cannot enter a keyword himself.
+</p>
+
+<p>
+   The default option combines both presentation forms. It lets the visitor enter a keyword and he can select
+   one from a drop-down list.
+</p>
 
 </body>
 </html>

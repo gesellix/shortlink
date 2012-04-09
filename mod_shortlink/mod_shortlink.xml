@@ -30,7 +30,7 @@
          <fieldset name="basic">
             <field name="introduction" type="textarea" cols="20" rows="5" default="''" label="Introduction"
                    description="A small descriptive introduction above the search form (optional)."/>
-            <field name="presentation" type="radio" default="2" label="Display mode"
+            <field name="presentation" type="radio" default="1" label="Display mode"
                    description="You may select to show an input field, a dropdown list or a combination of both.">
                <option value="0">Input field</option>
                <option value="1">Dropdown box</option>
