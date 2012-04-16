@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="module" version="1.6.0" method="upgrade">
    <name>Shortlink</name>
-   <author>Tobias Gesellchen</author>
    <creationDate>2009-03-20</creationDate>
-   <copyright>(c) 2009-2012 Tobias Gesellchen</copyright>
-   <license>GPL</license>
+   <author>Tobias Gesellchen</author>
    <authorEmail>tobias@gesellix.de</authorEmail>
    <authorUrl>http://www.gesellix.de/</authorUrl>
-   <version>3.0</version>
+   <copyright>(c) 2009-2012 Tobias Gesellchen</copyright>
+   <license>GPL</license>
+   <version>3.0.0 2012-04-16 stable</version>
    <description><![CDATA[
       Shortlink module for the corresponding component.
       &copy; Tobias Gesellchen, <a href="http://www.gesellix.de/" target="_blank">www.gesellix.de</a>
